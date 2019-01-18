@@ -92,6 +92,15 @@ router.post('/', async (req, res) => {
   });
 });
 
+router.get('/users', isLoggedIn, async (req, res) => {
+  const read = await db.tosts.findAll({
+    where: {
+      userId: req.user.id,
+    },
+  });
+  res.json(resultFormat(true, null, read));
+});
+
 router.put('/:id', isLoggedIn, async (req, res) => {
   AWS.config.update({
     accessKeyId: global.config.AWSAccessKeyId,
@@ -187,6 +196,5 @@ router.get('/:id', isLoggedIn, async (req, res) => {
   });
   res.json(resultFormat(true, null, result));
 });
-
 
 module.exports = router;

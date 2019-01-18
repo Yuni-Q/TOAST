@@ -44,11 +44,11 @@ router.post('/', async (req, res) => {
   // 서버에 업로드 완료 후
   form.parse(req, async (err, fields, files) => {
     if (!files.image) {
-      const bookId = parseInt(fields.bookId, 10);
+      const partId = parseInt(fields.partId, 10);
       const read = await db.questions.create({
         title: fields.title,
         content: fields.content,
-        bookId,
+        partId,
       });
       res.json(resultFormat(true, null, read));
       return;
@@ -73,12 +73,12 @@ router.post('/', async (req, res) => {
     });
     const baseUrl = 'https://yunhee.s3.amazonaws.com/';
     const imgUrl = baseUrl + imageUrl;
-    const bookId = parseInt(fields.bookId, 10);
+    const partId = parseInt(fields.partId, 10);
     const read = await db.questions.create({
       title: fields.title,
       content: fields.content,
       imgUrl,
-      bookId,
+      partId,
     });
     res.json(resultFormat(true, null, read));
     // unlink tmp files
@@ -170,7 +170,7 @@ router.delete('/:id', isLoggedIn, async (req, res) => {
 router.get('/:id', isLoggedIn, async (req, res) => {
   const share = await db.tosts.findOne({
     where: {
-      partId: req.params.id,
+      questionId: req.params.id,
       share: 1,
       userId: req.user.id,
     },
@@ -181,6 +181,8 @@ router.get('/:id', isLoggedIn, async (req, res) => {
         * 
       from questions 
         join tosts on questions.id = tosts.questionId
+        left join (select count(*) as keepsCount, tostId from keeps JOIN tosts on tosts.id = keeps.tostId ) as keeps on keeps.tostId = tosts.id
+        left join (select count(*) as alertCount, tostId from alerts JOIN tosts on tosts.id = alerts.tostId ) as alerts on alerts.tostId = tosts.id
         where questions.id = ${req.params.id}
         and tosts.share = 1;
       `;
@@ -189,11 +191,18 @@ router.get('/:id', isLoggedIn, async (req, res) => {
     });
     res.json(resultFormat(true, null, result));
   } else {
-    const result = await db.tosts.findOne({
-      where: {
-        partId: req.params.id,
-        userId: req.user.id,
-      },
+    const query = `
+      select
+        * 
+      from questions 
+        join tosts on questions.id = tosts.questionId
+        left join (select count(*) as keepsCount, tostId from keeps JOIN tosts on tosts.id = keeps.tostId ) as keeps on keeps.tostId = tosts.id
+        left join (select count(*) as alertCount, tostId from alerts JOIN tosts on tosts.id = alerts.tostId ) as alerts on alerts.tostId = tosts.id
+        where questions.id = ${req.params.id}
+        and tosts.userId = ${req.user.id}
+      `;
+    const result = await db.sequelize.query(query, {
+      type: sequelize.QueryTypes.SELECT,
     });
     res.json(resultFormat(true, null, result));
   }

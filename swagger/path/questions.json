@@ -79,7 +79,7 @@
           "type": "text"
         },
         {
-          "name": "bookId",
+          "name": "partId",
           "in": "formData",
           "description": "file to upload",
           "required": false,
