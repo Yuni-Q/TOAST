@@ -13,23 +13,23 @@ router.get('/', isLoggedIn, async (req, res) => {
 
 router.post('/', isLoggedIn, async (req, res) => {
   const { id: userId } = req.user;
-  const { tostId } = req.body;
+  const { toastId } = req.body;
   const like = await db.likes.findOne({
     where: {
       userId,
-      tostId,
+      toastId,
     },
   });
   const result = like
     ? await db.likes.destroy({
       where: {
         userId,
-        tostId,
+        toastId,
       },
     })
     : await db.likes.create({
       userId,
-      tostId,
+      toastId,
     });
   res.json(resultFormat(true, null, result));
 });

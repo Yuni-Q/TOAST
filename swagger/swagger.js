@@ -6,7 +6,7 @@ const books = require('./path/books');
 const likes = require('./path/likes');
 const keeps = require('./path/keeps');
 const parts = require('./path/parts');
-const tosts = require('./path/tosts');
+const toasts = require('./path/toasts');
 const questions = require('./path/questions');
 
 // const { definitions } = require('./definitions/definitions');
@@ -39,8 +39,8 @@ Object.keys(parts).forEach((key) => {
   paths[key] = parts[key];
 });
 
-Object.keys(tosts).forEach((key) => {
-  paths[key] = tosts[key];
+Object.keys(toasts).forEach((key) => {
+  paths[key] = toasts[key];
 });
 
 Object.keys(questions).forEach((key) => {

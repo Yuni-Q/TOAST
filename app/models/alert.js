@@ -10,7 +10,7 @@ module.exports = (Sequelize, DataTypes) => {
         autoIncrement: true,
       },
       userId: DataTypes.INTEGER,
-      tostId: DataTypes.INTEGER,
+      toastId: DataTypes.INTEGER,
       createdAt: DataTypes.DATE,
       title: DataTypes.STRING,
       content: DataTypes.STRING,

@@ -168,7 +168,7 @@ router.delete('/:id', isLoggedIn, async (req, res) => {
 });
 
 router.get('/:id', isLoggedIn, async (req, res) => {
-  const share = await db.tosts.findOne({
+  const share = await db.toasts.findOne({
     where: {
       questionId: req.params.id,
       share: 1,
@@ -180,11 +180,11 @@ router.get('/:id', isLoggedIn, async (req, res) => {
       select
         * 
       from questions 
-        join tosts on questions.id = tosts.questionId
-        left join (select count(*) as keepsCount, tostId from keeps JOIN tosts on tosts.id = keeps.tostId ) as keeps on keeps.tostId = tosts.id
-        left join (select count(*) as alertCount, tostId from alerts JOIN tosts on tosts.id = alerts.tostId ) as alerts on alerts.tostId = tosts.id
+        join toasts on questions.id = toasts.questionId
+        left join (select count(*) as keepsCount, toastId from keeps JOIN toasts on toasts.id = keeps.toastId ) as keeps on keeps.toastId = toasts.id
+        left join (select count(*) as alertCount, toastId from alerts JOIN toasts on toasts.id = alerts.toastId ) as alerts on alerts.toastId = toasts.id
         where questions.id = ${req.params.id}
-        and tosts.share = 1;
+        and toasts.share = 1;
       `;
     const result = await db.sequelize.query(query, {
       type: sequelize.QueryTypes.SELECT,
@@ -195,11 +195,11 @@ router.get('/:id', isLoggedIn, async (req, res) => {
       select
         * 
       from questions 
-        join tosts on questions.id = tosts.questionId
-        left join (select count(*) as keepsCount, tostId from keeps JOIN tosts on tosts.id = keeps.tostId ) as keeps on keeps.tostId = tosts.id
-        left join (select count(*) as alertCount, tostId from alerts JOIN tosts on tosts.id = alerts.tostId ) as alerts on alerts.tostId = tosts.id
+        join toasts on questions.id = toasts.questionId
+        left join (select count(*) as keepsCount, toastId from keeps JOIN toasts on toasts.id = keeps.toastId ) as keeps on keeps.toastId = toasts.id
+        left join (select count(*) as alertCount, toastId from alerts JOIN toasts on toasts.id = alerts.toastId ) as alerts on alerts.toastId = toasts.id
         where questions.id = ${req.params.id}
-        and tosts.userId = ${req.user.id}
+        and toasts.userId = ${req.user.id}
       `;
     const result = await db.sequelize.query(query, {
       type: sequelize.QueryTypes.SELECT,

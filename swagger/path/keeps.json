@@ -42,7 +42,7 @@
       "tags": [
         "keeps"
       ],
-      "summary": "tost keep",
+      "summary": "toast keep",
       "produces": [
         "application/json"
       ],
@@ -65,7 +65,7 @@
                 "type": "integer",
                 "example": 1
               },
-              "tostId": {
+              "toastId": {
                 "type": "integer",
                 "example": 1
               }

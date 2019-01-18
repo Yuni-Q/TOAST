@@ -21,12 +21,12 @@ router.post('/', isLoggedIn, async (req, res) => {
   const {
     title,
     content,
-    tostId,
+    toastId,
   } = req.body;
   const result = await db.alerts.create({
     title,
     content,
-    tostId,
+    toastId,
     userId: req.user.id,
   });
   res.json(resultFormat(true, null, result));
@@ -36,13 +36,13 @@ router.put('/:id', isLoggedIn, async (req, res) => {
   const {
     title,
     content,
-    tostId,
+    toastId,
   } = req.body;
   const result = await db.alerts.update(
     {
       title,
       content,
-      tostId,
+      toastId,
       userId: req.user.id,
     },
     {

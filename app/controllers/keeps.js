@@ -15,7 +15,7 @@ router.get('/', isLoggedIn, async (req, res) => {
     select
       * 
     from keeps 
-      join tosts on keeps.tostId = tosts.id
+      join toasts on keeps.toastId = toasts.id
       where keeps.userId = ${req.user.id};
     `;
   const result = await db.sequelize.query(query, {
@@ -30,22 +30,22 @@ router.post('/', isLoggedIn, async (req, res) => {
     id: userId,
   } = req.user;
   const {
-    tostId,
+    toastId,
   } = req.body;
   const like = await db.keeps.findOne({
     where: {
       userId,
-      tostId,
+      toastId,
     },
   });
   const result = like ? await db.keeps.destroy({
     where: {
       userId,
-      tostId,
+      toastId,
     },
   }) : await db.keeps.create({
     userId,
-    tostId,
+    toastId,
   });
   res.json(resultFormat(true, null, result));
 });

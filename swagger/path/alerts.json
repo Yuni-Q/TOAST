@@ -32,7 +32,7 @@
                 "type": "string",
                 "example": "목소리가 별로네요"
               },
-              "tostId": {
+              "toastId": {
                 "type": "integer",
                 "example": 1
               }
@@ -151,7 +151,7 @@
           "in": "path",
           "type": "integer",
           "default": 1,
-          "description": "tost 번호",
+          "description": "toast 번호",
           "required": true
         }
       ],
@@ -224,7 +224,7 @@
           "in": "path",
           "type": "integer",
           "default": 3,
-          "description": "tost 번호",
+          "description": "toast 번호",
           "required": true
         }
       ],
@@ -269,7 +269,7 @@
           "in": "path",
           "type": "integer",
           "default": 1,
-          "description": "tost 번호",
+          "description": "toast 번호",
           "required": true
         },
         {
@@ -287,7 +287,7 @@
                 "type": "string",
                 "example": "목소리가 별로네요"
               },
-              "tostId": {
+              "toastId": {
                 "type": "integer",
                 "example": 1
               }

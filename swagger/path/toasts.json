@@ -1,10 +1,10 @@
 {
-  "/tosts/users": {
+  "/toasts/users": {
     "get": {
       "tags": [
-        "tosts"
+        "toasts"
       ],
-      "summary": "tost 목록",
+      "summary": "toast 목록",
       "produces": [
         "application/json"
       ],
@@ -39,12 +39,12 @@
       }
     }
   },
-  "/tosts": {
+  "/toasts": {
     "get": {
       "tags": [
-        "tosts"
+        "toasts"
       ],
-      "summary": "tost 목록",
+      "summary": "toast 목록",
       "produces": [
         "application/json"
       ],
@@ -80,9 +80,9 @@
     },
     "post": {
       "tags": [
-        "tosts"
+        "toasts"
       ],
-      "summary": "tost 만들기",
+      "summary": "toast 만들기",
       "consumes": [
         "multipart/form-data"
       ],
@@ -212,12 +212,12 @@
       }
     }
   },
-  "/tosts/{id}": {
+  "/toasts/{id}": {
     "get": {
       "tags": [
-        "tosts"
+        "toasts"
       ],
-      "summary": "tost 조회",
+      "summary": "toast 조회",
       "produces": [
         "application/json"
       ],
@@ -234,7 +234,7 @@
           "in": "path",
           "type": "integer",
           "default": 2,
-          "description": "tost 번호",
+          "description": "toast 번호",
           "required": true
         }
       ],
@@ -320,9 +320,9 @@
     },
     "put": {
       "tags": [
-        "tosts"
+        "toasts"
       ],
-      "summary": "tost 수정하기",
+      "summary": "toast 수정하기",
       "consumes": [
         "multipart/form-data"
       ],
@@ -342,7 +342,7 @@
           "in": "path",
           "type": "integer",
           "default": 30,
-          "description": "tost 번호",
+          "description": "toast 번호",
           "required": true
         },
         {
@@ -447,9 +447,9 @@
     },
     "delete": {
       "tags": [
-        "tosts"
+        "toasts"
       ],
-      "summary": "tost 지우기",
+      "summary": "toast 지우기",
       "produces": [
         "application/json"
       ],
@@ -466,7 +466,7 @@
           "in": "path",
           "type": "integer",
           "default": 1,
-          "description": "tost 번호",
+          "description": "toast 번호",
           "required": true
         }
       ],

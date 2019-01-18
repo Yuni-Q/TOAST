@@ -17,7 +17,7 @@ const {
 
 
 router.get('/', isLoggedIn, async (req, res) => {
-  const read = await db.tosts.findAll({});
+  const read = await db.toasts.findAll({});
   res.json(resultFormat(true, null, read));
 });
 
@@ -47,7 +47,7 @@ router.post('/', async (req, res) => {
       const questionId = parseInt(fields.questionId, 10);
       const share = parseInt(fields.share, 10);
       const userId = parseInt(fields.userId, 10);
-      const read = await db.tosts.create({
+      const read = await db.toasts.create({
         title: fields.title,
         content: fields.content,
         questionId,
@@ -79,7 +79,7 @@ router.post('/', async (req, res) => {
     const fileUrl = baseUrl + url;
     const questionId = parseInt(fields.questionId, 10);
     const share = parseInt(fields.share, 10);
-    const result = await db.tosts.create({
+    const result = await db.toasts.create({
       title: fields.title,
       content: fields.content,
       fileUrl,
@@ -96,10 +96,10 @@ router.get('/users', isLoggedIn, async (req, res) => {
   const query = `
       select
         * 
-      from tosts 
-        left join (select count(*) as keepsCount, tostId from keeps JOIN tosts on tosts.id = keeps.tostId ) as keeps on keeps.tostId = tosts.id
-        left join (select count(*) as alertCount, tostId from alerts JOIN tosts on tosts.id = alerts.tostId ) as alerts on alerts.tostId = tosts.id
-        where tosts.userId = ${req.user.id}
+      from toasts 
+        left join (select count(*) as keepsCount, toastId from keeps JOIN toasts on toasts.id = keeps.toastId ) as keeps on keeps.toastId = toasts.id
+        left join (select count(*) as alertCount, toastId from alerts JOIN toasts on toasts.id = alerts.toastId ) as alerts on alerts.toastId = toasts.id
+        where toasts.userId = ${req.user.id}
       `;
   const result = await db.sequelize.query(query, {
     type: sequelize.QueryTypes.SELECT,
@@ -130,7 +130,7 @@ router.put('/:id', isLoggedIn, async (req, res) => {
   form.parse(req, isLoggedIn, async (err, fields, files) => {
     if (!files.file) {
       const share = parseInt(fields.share, 10);
-      const read = await db.tosts.update({
+      const read = await db.toasts.update({
         title: fields.title,
         content: fields.content,
         share,
@@ -163,7 +163,7 @@ router.put('/:id', isLoggedIn, async (req, res) => {
     const baseUrl = 'https://yunhee.s3.amazonaws.com/';
     const fileUrl = baseUrl + url;
     const share = parseInt(fields.share, 10);
-    const read = await db.tosts.update({
+    const read = await db.toasts.update({
       title: fields.title,
       content: fields.content,
       fileUrl,
@@ -179,14 +179,14 @@ router.put('/:id', isLoggedIn, async (req, res) => {
   });
 });
 
-// 게시글 id에 해당하는 글 지우기 -> deletetosts에 넣기
+// 게시글 id에 해당하는 글 지우기 -> deletetoasts에 넣기
 router.delete('/:id', isLoggedIn, async (req, res) => {
   const {
     id,
   } = req.params;
-  // await db.deletetosts.create({
+  // await db.deletetoasts.create({
   // });
-  const result = await db.tosts.destroy({
+  const result = await db.toasts.destroy({
     where: {
       id,
     },
@@ -195,7 +195,7 @@ router.delete('/:id', isLoggedIn, async (req, res) => {
 });
 
 router.get('/:id', isLoggedIn, async (req, res) => {
-  const result = await db.tosts.findOne({
+  const result = await db.toasts.findOne({
     where: {
       id: req.params.id,
     },

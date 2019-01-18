@@ -6,6 +6,6 @@ module.exports = {
   parts: require('./parts'),
   questions: require('./questions'),
   signIn: require('./signIn'),
-  tosts: require('./tosts'),
+  toasts: require('./toasts'),
   users: require('./users'),
 };
