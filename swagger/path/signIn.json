@@ -1,0 +1,95 @@
+{
+  "/signIn": {
+    "post": {
+      "tags": [
+        "signIn"
+      ],
+      "summary": "로그인",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "example": "aa@aa.com"
+              },
+              "password": {
+                "type": "string",
+                "example": "aa"
+              }
+            }
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              },
+              "result": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string",
+                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Nywibmlja05hbWUiOm51bGwsImVtYWlsIjoiYWFAYWEuY29tIiwiaWF0IjoxNTQzMDY5NTczLCJleHAiOjE1NDM2NzQzNzMsImlzcyI6Ik9ORVBJQyIsInN1YiI6InVzZXJJbmZvIn0.yOCYZq4pEH0wVJciToRkl8W8kcRwufMXW2sUEI8dCks"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "delete": {
+      "tags": [
+        "signIn"
+      ],
+      "summary": "로그아웃",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "type": "string",
+          "description": "API 인증 키",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Nywibmlja05hbWUiOm51bGwsImVtYWlsIjoiYWFAYWEuY29tIiwiaWF0IjoxNTQzMDY5NTczLCJleHAiOjE1NDM2NzQzNzMsImlzcyI6Ik9ORVBJQyIsInN1YiI6InVzZXJJbmZvIn0.yOCYZq4pEH0wVJciToRkl8W8kcRwufMXW2sUEI8dCks",
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "/likes": {
+    "post": {
+      "tags": [
+        "likes"
+      ],
+      "summary": "좋아요",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "type": "string",
+          "description": "API 인증 키",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Nywibmlja05hbWUiOm51bGwsImVtYWlsIjoiYWFAYWEuY29tIiwiaWF0IjoxNTQzMDY5NTczLCJleHAiOjE1NDM2NzQzNzMsImlzcyI6Ik9ORVBJQyIsInN1YiI6InVzZXJJbmZvIn0.yOCYZq4pEH0wVJciToRkl8W8kcRwufMXW2sUEI8dCks",
+          "required": true
+        },
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "boardId": {
+                "type": "integer",
+                "example": 1
+              }
+            }
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              },
+              "result": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "description": "좋아요 등록",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 12
+                    },
+                    "userId": {
+                      "type": "integer",
+                      "example": 142
+                    },
+                    "boardId": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2018-11-24T15:16:33.000Z"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2018-11-24T15:34:34.000Z"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

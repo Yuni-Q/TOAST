@@ -1,0 +1,796 @@
+{
+  "/boards/users/location": {
+    "get": {
+      "tags": [
+        "books"
+      ],
+      "summary": "책 목록",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "type": "string",
+          "description": "API 인증 키",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQyLCJuaWNrTmFtZSI6bnVsbCwiZW1haWwiOiJhYUBhYS5jb20iLCJpYXQiOjE1NDY4NDk0NTYsImV4cCI6MTU0NzQ1NDI1NiwiaXNzIjoiT05FUElDIiwic3ViIjoidXNlckluZm8ifQ.XlubXtxCv3pvjjILa-WsypOxU5OiL6ph6r9-vdF6Ztc",
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              },
+              "result": {
+                "type": "integer",
+                "example": 0
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/boards/users/likes": {
+    "get": {
+      "tags": [
+        "boards"
+      ],
+      "summary": "좋이요한 게시글(북마크)",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "type": "string",
+          "description": "API 인증 키",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQyLCJuaWNrTmFtZSI6bnVsbCwiZW1haWwiOiJhYUBhYS5jb20iLCJpYXQiOjE1NDY4NDk0NTYsImV4cCI6MTU0NzQ1NDI1NiwiaXNzIjoiT05FUElDIiwic3ViIjoidXNlckluZm8ifQ.XlubXtxCv3pvjjILa-WsypOxU5OiL6ph6r9-vdF6Ztc",
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              },
+              "result": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "description": "글 리스트",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 28
+                    },
+                    "userId": {
+                      "type": "integer",
+                      "example": 139
+                    },
+                    "boardId": {
+                      "type": "integer",
+                      "example": 28
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2018-11-24T15:16:33.000Z"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2018-11-24T15:34:34.000Z"
+                    },
+                    "date": {
+                      "type": "string",
+                      "example": "2018-11-24"
+                    },
+                    "content": {
+                      "type": "string",
+                      "example": "aaa"
+                    },
+                    "location": {
+                      "type": "string",
+                      "example": "seoul"
+                    },
+                    "lon": {
+                      "type": "float",
+                      "example": 111.111
+                    },
+                    "lat": {
+                      "type": "float",
+                      "example": 111.111
+                    },
+                    "share": {
+                      "type": "integer",
+                      "example": null
+                    },
+                    "imgUrl": {
+                      "type": "string",
+                      "example": "https://yunhee.s3.amazonaws.com/yzORnu5p.png"
+                    },
+                    "ninePick": {
+                      "type": "integer",
+                      "example": 0
+                    },
+                    "likeCounts": {
+                      "type": "integer",
+                      "example": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/boards/users": {
+    "get": {
+      "tags": [
+        "boards"
+      ],
+      "summary": "유저 게시글",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "type": "string",
+          "description": "API 인증 키",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQyLCJuaWNrTmFtZSI6bnVsbCwiZW1haWwiOiJhYUBhYS5jb20iLCJpYXQiOjE1NDY4NDk0NTYsImV4cCI6MTU0NzQ1NDI1NiwiaXNzIjoiT05FUElDIiwic3ViIjoidXNlckluZm8ifQ.XlubXtxCv3pvjjILa-WsypOxU5OiL6ph6r9-vdF6Ztc",
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              },
+              "result": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "description": "글 리스트",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 28
+                    },
+                    "userId": {
+                      "type": "integer",
+                      "example": 139
+                    },
+                    "boardId": {
+                      "type": "integer",
+                      "example": 28
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2018-11-24T15:16:33.000Z"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2018-11-24T15:34:34.000Z"
+                    },
+                    "date": {
+                      "type": "string",
+                      "example": "2018-11-24"
+                    },
+                    "content": {
+                      "type": "string",
+                      "example": "aaa"
+                    },
+                    "location": {
+                      "type": "string",
+                      "example": "seoul"
+                    },
+                    "lon": {
+                      "type": "float",
+                      "example": 111.111
+                    },
+                    "lat": {
+                      "type": "float",
+                      "example": 111.111
+                    },
+                    "share": {
+                      "type": "integer",
+                      "example": null
+                    },
+                    "imgUrl": {
+                      "type": "string",
+                      "example": "https://yunhee.s3.amazonaws.com/yzORnu5p.png"
+                    },
+                    "ninePick": {
+                      "type": "integer",
+                      "example": 0
+                    },
+                    "likeCounts": {
+                      "type": "integer",
+                      "example": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/boards/users/ninePick": {
+    "put": {
+      "tags": [
+        "boards"
+      ],
+      "summary": "좋이요한 게시글(북마크)",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "type": "string",
+          "description": "API 인증 키",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQyLCJuaWNrTmFtZSI6bnVsbCwiZW1haWwiOiJhYUBhYS5jb20iLCJpYXQiOjE1NDY4NDk0NTYsImV4cCI6MTU0NzQ1NDI1NiwiaXNzIjoiT05FUElDIiwic3ViIjoidXNlckluZm8ifQ.XlubXtxCv3pvjjILa-WsypOxU5OiL6ph6r9-vdF6Ztc",
+          "required": true
+        },
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "boardId": {
+                "type": "integer",
+                "example": 30
+              },
+              "number": {
+                "type": "integer",
+                "example": 1
+              }
+            }
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/boards": {
+    "post": {
+      "tags": [
+        "boards"
+      ],
+      "summary": "게시글",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "type": "string",
+          "description": "API 인증 키",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQyLCJuaWNrTmFtZSI6bnVsbCwiZW1haWwiOiJhYUBhYS5jb20iLCJpYXQiOjE1NDY4NDk0NTYsImV4cCI6MTU0NzQ1NDI1NiwiaXNzIjoiT05FUElDIiwic3ViIjoidXNlckluZm8ifQ.XlubXtxCv3pvjjILa-WsypOxU5OiL6ph6r9-vdF6Ztc",
+          "required": true
+        },
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "example": "파리여행"
+              },
+              "date": {
+                "type": "string",
+                "example": "2018-01-07"
+              },
+              "content": {
+                "type": "string",
+                "example": "감성파뤼이"
+              },
+              "userId": {
+                "type": "int",
+                "example": "1"
+              },
+              "location": {
+                "type": "string",
+                "example": "paris"
+              },
+              "lon": {
+                "type": "float",
+                "example": 11.111
+              },
+              "lat": {
+                "type": "float",
+                "example": 22.222
+              },
+              "share": {
+                "type": "boolean",
+                "example": 0
+              },
+              "image": {
+                "type": "string",
+                "example": null
+              }
+            }
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              },
+              "result": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "description": "글 리스트",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 28
+                    },
+                    "userId": {
+                      "type": "integer",
+                      "example": 139
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2018-11-24T15:16:33.000Z"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2018-11-24T15:34:34.000Z"
+                    },
+                    "date": {
+                      "type": "string",
+                      "example": "2018-11-24"
+                    },
+                    "content": {
+                      "type": "string",
+                      "example": "aaa"
+                    },
+                    "location": {
+                      "type": "string",
+                      "example": "seoul"
+                    },
+                    "lon": {
+                      "type": "float",
+                      "example": 111.111
+                    },
+                    "lat": {
+                      "type": "float",
+                      "example": 111.111
+                    },
+                    "share": {
+                      "type": "integer",
+                      "example": null
+                    },
+                    "imgUrl": {
+                      "type": "string",
+                      "example": "https://yunhee.s3.amazonaws.com/yzORnu5p.png"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "get": {
+      "tags": [
+        "boards"
+      ],
+      "summary": "게시글 조회",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "type": "string",
+          "description": "API 인증 키",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Nywibmlja05hbWUiOm51bGwsImVtYWlsIjoiYWFAYWEuY29tIiwiaWF0IjoxNTQzMDY5NTczLCJleHAiOjE1NDM2NzQzNzMsImlzcyI6Ik9ORVBJQyIsInN1YiI6InVzZXJJbmZvIn0.yOCYZq4pEH0wVJciToRkl8W8kcRwufMXW2sUEI8dCks",
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              },
+              "result": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "description": "글 리스트",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 28
+                    },
+                    "userId": {
+                      "type": "integer",
+                      "example": 139
+                    },
+                    "boardId": {
+                      "type": "integer",
+                      "example": 28
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2018-11-24T15:16:33.000Z"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2018-11-24T15:34:34.000Z"
+                    },
+                    "date": {
+                      "type": "string",
+                      "example": "2018-11-24"
+                    },
+                    "content": {
+                      "type": "string",
+                      "example": "aaa"
+                    },
+                    "location": {
+                      "type": "string",
+                      "example": "seoul"
+                    },
+                    "lon": {
+                      "type": "float",
+                      "example": 111.111
+                    },
+                    "lat": {
+                      "type": "float",
+                      "example": 111.111
+                    },
+                    "share": {
+                      "type": "integer",
+                      "example": null
+                    },
+                    "imgUrl": {
+                      "type": "string",
+                      "example": "https://yunhee.s3.amazonaws.com/yzORnu5p.png"
+                    },
+                    "ninePick": {
+                      "type": "integer",
+                      "example": 0
+                    },
+                    "likeCounts": {
+                      "type": "integer",
+                      "example": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/boards/{id}": {
+    "get": {
+      "tags": [
+        "boards"
+      ],
+      "summary": "게시글 조회",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "type": "string",
+          "description": "API 인증 키",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQyLCJuaWNrTmFtZSI6bnVsbCwiZW1haWwiOiJhYUBhYS5jb20iLCJpYXQiOjE1NDY4NDk0NTYsImV4cCI6MTU0NzQ1NDI1NiwiaXNzIjoiT05FUElDIiwic3ViIjoidXNlckluZm8ifQ.XlubXtxCv3pvjjILa-WsypOxU5OiL6ph6r9-vdF6Ztc",
+          "required": true
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "type": "integer",
+          "default": 30,
+          "description": "게시글 번호",
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              },
+              "result": {
+                "type": "object",
+                "description": "글 리스트",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": 28
+                  },
+                  "userId": {
+                    "type": "integer",
+                    "example": 139
+                  },
+                  "boardId": {
+                    "type": "integer",
+                    "example": 28
+                  },
+                  "createdAt": {
+                    "type": "string",
+                    "example": "2018-11-24T15:16:33.000Z"
+                  },
+                  "updatedAt": {
+                    "type": "string",
+                    "example": "2018-11-24T15:34:34.000Z"
+                  },
+                  "date": {
+                    "type": "string",
+                    "example": "2018-11-24"
+                  },
+                  "content": {
+                    "type": "string",
+                    "example": "aaa"
+                  },
+                  "location": {
+                    "type": "string",
+                    "example": "seoul"
+                  },
+                  "lon": {
+                    "type": "float",
+                    "example": 111.111
+                  },
+                  "lat": {
+                    "type": "float",
+                    "example": 111.111
+                  },
+                  "share": {
+                    "type": "integer",
+                    "example": null
+                  },
+                  "imgUrl": {
+                    "type": "string",
+                    "example": "https://yunhee.s3.amazonaws.com/yzORnu5p.png"
+                  },
+                  "ninePick": {
+                    "type": "integer",
+                    "example": 0
+                  },
+                  "likeCounts": {
+                    "type": "integer",
+                    "example": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "put": {
+      "tags": [
+        "boards"
+      ],
+      "summary": "게시글 수정",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "type": "string",
+          "description": "API 인증 키",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQyLCJuaWNrTmFtZSI6bnVsbCwiZW1haWwiOiJhYUBhYS5jb20iLCJpYXQiOjE1NDY4NDk0NTYsImV4cCI6MTU0NzQ1NDI1NiwiaXNzIjoiT05FUElDIiwic3ViIjoidXNlckluZm8ifQ.XlubXtxCv3pvjjILa-WsypOxU5OiL6ph6r9-vdF6Ztc",
+          "required": true
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "type": "integer",
+          "default": 30,
+          "description": "게시글 번호",
+          "required": true
+        },
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "example": "파리여행"
+              },
+              "date": {
+                "type": "string",
+                "example": "2018-01-07"
+              },
+              "content": {
+                "type": "string",
+                "example": "감성파뤼이"
+              },
+              "userId": {
+                "type": "int",
+                "example": "1"
+              },
+              "location": {
+                "type": "string",
+                "example": "paris"
+              },
+              "lon": {
+                "type": "float",
+                "example": 11.111
+              },
+              "lat": {
+                "type": "float",
+                "example": 22.222
+              },
+              "share": {
+                "type": "boolean",
+                "example": 0
+              },
+              "image": {
+                "type": "string",
+                "example": null
+              }
+            }
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              },
+              "result": {
+                "type": "array",
+                "example": [
+                  1
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "delete": {
+      "tags": [
+        "boards"
+      ],
+      "summary": "게시글 조회",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "type": "string",
+          "description": "API 인증 키",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQyLCJuaWNrTmFtZSI6bnVsbCwiZW1haWwiOiJhYUBhYS5jb20iLCJpYXQiOjE1NDY4NDk0NTYsImV4cCI6MTU0NzQ1NDI1NiwiaXNzIjoiT05FUElDIiwic3ViIjoidXNlckluZm8ifQ.XlubXtxCv3pvjjILa-WsypOxU5OiL6ph6r9-vdF6Ztc",
+          "required": true
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "type": "integer",
+          "default": 30,
+          "description": "게시글 번호",
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              },
+              "result": {
+                "type": "integer",
+                "example": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
