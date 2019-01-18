@@ -1,6 +1,6 @@
 module.exports = (Sequelize, DataTypes) => {
-  const tosts = Sequelize.define(
-    'tosts', {
+  const questions = Sequelize.define(
+    'questions', {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -10,12 +10,10 @@ module.exports = (Sequelize, DataTypes) => {
       updatedAt: DataTypes.DATE,
       title: DataTypes.STRING,
       content: DataTypes.STRING,
-      fileUrl: DataTypes.STRING,
-      questionId: DataTypes.INTEGER,
-      userId: DataTypes.INTEGER,
-      share: DataTypes.BOOLEAN,
+      // imgUrl: DataTypes.STRING,
+      partId: DataTypes.INTEGER,
     }, {},
   );
 
-  return tosts;
+  return questions;
 };

@@ -1,10 +1,10 @@
 {
-  "/tosts": {
+  "/questions": {
     "get": {
       "tags": [
-        "tosts"
+        "questions"
       ],
-      "summary": "tost 목록",
+      "summary": "질문 목록",
       "produces": [
         "application/json"
       ],
@@ -40,9 +40,9 @@
     },
     "post": {
       "tags": [
-        "tosts"
+        "questions"
       ],
-      "summary": "tost 만들기",
+      "summary": "질문 만들기",
       "consumes": [
         "multipart/form-data"
       ],
@@ -58,7 +58,7 @@
           "required": true
         },
         {
-          "name": "file",
+          "name": "image",
           "in": "formData",
           "description": "file to upload",
           "required": false,
@@ -79,21 +79,7 @@
           "type": "text"
         },
         {
-          "name": "questionId",
-          "in": "formData",
-          "description": "file to upload",
-          "required": false,
-          "type": "integer"
-        },
-        {
-          "name": "userId",
-          "in": "formData",
-          "description": "file to upload",
-          "required": false,
-          "type": "integer"
-        },
-        {
-          "name": "share",
+          "name": "bookId",
           "in": "formData",
           "description": "file to upload",
           "required": false,
@@ -172,12 +158,12 @@
       }
     }
   },
-  "/tosts/{id}": {
+  "/questions/{id}": {
     "get": {
       "tags": [
-        "tosts"
+        "questions"
       ],
-      "summary": "tost 조회",
+      "summary": "질문 조회",
       "produces": [
         "application/json"
       ],
@@ -194,7 +180,7 @@
           "in": "path",
           "type": "integer",
           "default": 2,
-          "description": "tost 번호",
+          "description": "질문 번호",
           "required": true
         }
       ],
@@ -280,9 +266,9 @@
     },
     "put": {
       "tags": [
-        "tosts"
+        "questions"
       ],
-      "summary": "tost 수정하기",
+      "summary": "질문 수정하기",
       "consumes": [
         "multipart/form-data"
       ],
@@ -302,11 +288,11 @@
           "in": "path",
           "type": "integer",
           "default": 30,
-          "description": "tost 번호",
+          "description": "질문 번호",
           "required": true
         },
         {
-          "name": "file",
+          "name": "image",
           "in": "formData",
           "description": "file to upload",
           "required": false,
@@ -325,13 +311,6 @@
           "description": "file to upload",
           "required": false,
           "type": "text"
-        },
-        {
-          "name": "share",
-          "in": "formData",
-          "description": "file to upload",
-          "required": false,
-          "type": "integer"
         }
       ],
       "responses": {
@@ -407,9 +386,9 @@
     },
     "delete": {
       "tags": [
-        "tosts"
+        "questions"
       ],
-      "summary": "tost 지우기",
+      "summary": "질문 지우기",
       "produces": [
         "application/json"
       ],
@@ -426,7 +405,7 @@
           "in": "path",
           "type": "integer",
           "default": 1,
-          "description": "tost 번호",
+          "description": "질문 번호",
           "required": true
         }
       ],

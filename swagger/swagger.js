@@ -7,6 +7,7 @@ const likes = require('./path/likes');
 const keeps = require('./path/keeps');
 const parts = require('./path/parts');
 const tosts = require('./path/tosts');
+const questions = require('./path/questions');
 
 // const { definitions } = require('./definitions/definitions');
 
@@ -40,6 +41,10 @@ Object.keys(parts).forEach((key) => {
 
 Object.keys(tosts).forEach((key) => {
   paths[key] = tosts[key];
+});
+
+Object.keys(questions).forEach((key) => {
+  paths[key] = questions[key];
 });
 
 module.exports = {

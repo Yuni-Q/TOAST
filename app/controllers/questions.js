@@ -17,7 +17,7 @@ const {
 
 
 router.get('/', isLoggedIn, async (req, res) => {
-  const read = await db.parts.findAll({});
+  const read = await db.questions.findAll({});
   res.json(resultFormat(true, null, read));
 });
 
@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
   form.parse(req, async (err, fields, files) => {
     if (!files.image) {
       const bookId = parseInt(fields.bookId, 10);
-      const read = await db.parts.create({
+      const read = await db.questions.create({
         title: fields.title,
         content: fields.content,
         bookId,
@@ -74,7 +74,7 @@ router.post('/', async (req, res) => {
     const baseUrl = 'https://yunhee.s3.amazonaws.com/';
     const imgUrl = baseUrl + imageUrl;
     const bookId = parseInt(fields.bookId, 10);
-    const read = await db.parts.create({
+    const read = await db.questions.create({
       title: fields.title,
       content: fields.content,
       imgUrl,
@@ -108,7 +108,7 @@ router.put('/:id', isLoggedIn, async (req, res) => {
   // 서버에 업로드 완료 후
   form.parse(req, async (err, fields, files) => {
     if (!files.image) {
-      const read = await db.parts.update({
+      const read = await db.questions.update({
         title: fields.title,
         content: fields.content,
       }, {
@@ -139,7 +139,7 @@ router.put('/:id', isLoggedIn, async (req, res) => {
     });
     const baseUrl = 'https://yunhee.s3.amazonaws.com/';
     const imgUrl = baseUrl + imageUrl;
-    const read = await db.parts.update({
+    const read = await db.questions.update({
       title: fields.title,
       content: fields.content,
       imgUrl,
@@ -154,12 +154,12 @@ router.put('/:id', isLoggedIn, async (req, res) => {
   });
 });
 
-// 게시글 id에 해당하는 글 지우기 -> deleteparts에 넣기
+// 게시글 id에 해당하는 글 지우기 -> deletequestions에 넣기
 router.delete('/:id', isLoggedIn, async (req, res) => {
   const {
     id,
   } = req.params;
-  const result = await db.parts.destroy({
+  const result = await db.questions.destroy({
     where: {
       id,
     },
@@ -168,17 +168,35 @@ router.delete('/:id', isLoggedIn, async (req, res) => {
 });
 
 router.get('/:id', isLoggedIn, async (req, res) => {
-  const query = `
-    select
-      * 
-    from parts 
-      join questions on parts.id = questions.partId
-      where parts.id = ${req.params.id};
-    `;
-  const result = await db.sequelize.query(query, {
-    type: sequelize.QueryTypes.SELECT,
+  const share = await db.tosts.findOne({
+    where: {
+      partId: req.params.id,
+      share: 1,
+      userId: req.user.id,
+    },
   });
-  res.json(resultFormat(true, null, result));
+  if (share) {
+    const query = `
+      select
+        * 
+      from questions 
+        join tosts on questions.id = tosts.questionId
+        where questions.id = ${req.params.id}
+        and tosts.share = 1;
+      `;
+    const result = await db.sequelize.query(query, {
+      type: sequelize.QueryTypes.SELECT,
+    });
+    res.json(resultFormat(true, null, result));
+  } else {
+    const result = await db.tosts.findOne({
+      where: {
+        partId: req.params.id,
+        userId: req.user.id,
+      },
+    });
+    res.json(resultFormat(true, null, result));
+  }
 });
 
 
