@@ -22,7 +22,7 @@ router.get('/', isLoggedIn, async (req, res) => {
 });
 
 
-router.post('/', async (req, res) => {
+router.post('/', isLoggedIn, async (req, res) => {
   AWS.config.update({
     accessKeyId: global.config.AWSAccessKeyId,
     secretAccessKey: global.config.AWSSecretKey,
@@ -102,7 +102,7 @@ router.put('/:id', isLoggedIn, async (req, res) => {
   for (let i = 0; i < 8; i += 1) fileName += possible.charAt(Math.floor(Math.random() * possible.length));
 
   // 서버에 업로드 완료 후
-  form.parse(req, isLoggedIn, async (err, fields, files) => {
+  form.parse(req, async (err, fields, files) => {
     if (!files.image) {
       const read = await db.books.update({
         title: fields.title,
@@ -170,7 +170,7 @@ router.get('/:id', isLoggedIn, async (req, res) => {
     select
       * 
     from books 
-      join parts on books.id = pasts.bookid
+      join parts on books.id = parts.bookId
       where books.id = ${req.params.id};
     `;
   const result = await db.sequelize.query(query, {

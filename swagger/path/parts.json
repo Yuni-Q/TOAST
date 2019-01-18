@@ -1,10 +1,10 @@
 {
-  "/books": {
+  "/parts": {
     "get": {
       "tags": [
-        "books"
+        "parts"
       ],
-      "summary": "책 목록",
+      "summary": "파트 목록",
       "produces": [
         "application/json"
       ],
@@ -40,9 +40,9 @@
     },
     "post": {
       "tags": [
-        "books"
+        "parts"
       ],
-      "summary": "책 만들기",
+      "summary": "파트 만들기",
       "consumes": [
         "multipart/form-data"
       ],
@@ -77,6 +77,13 @@
           "description": "file to upload",
           "required": false,
           "type": "text"
+        },
+        {
+          "name": "bookId",
+          "in": "formData",
+          "description": "file to upload",
+          "required": false,
+          "type": "integer"
         }
       ],
       "responses": {
@@ -151,12 +158,12 @@
       }
     }
   },
-  "/books/{id}": {
+  "/parts/{id}": {
     "get": {
       "tags": [
-        "books"
+        "parts"
       ],
-      "summary": "책 조회",
+      "summary": "파트 조회",
       "produces": [
         "application/json"
       ],
@@ -173,7 +180,7 @@
           "in": "path",
           "type": "integer",
           "default": 2,
-          "description": "책 번호",
+          "description": "파트 번호",
           "required": true
         }
       ],
@@ -259,9 +266,9 @@
     },
     "put": {
       "tags": [
-        "books"
+        "parts"
       ],
-      "summary": "책 만들기",
+      "summary": "파트 수정하기",
       "consumes": [
         "multipart/form-data"
       ],
@@ -281,7 +288,7 @@
           "in": "path",
           "type": "integer",
           "default": 30,
-          "description": "책 번호",
+          "description": "파트 번호",
           "required": true
         },
         {
@@ -379,9 +386,9 @@
     },
     "delete": {
       "tags": [
-        "books"
+        "parts"
       ],
-      "summary": "책 지우기",
+      "summary": "파트 지우기",
       "produces": [
         "application/json"
       ],
@@ -398,7 +405,7 @@
           "in": "path",
           "type": "integer",
           "default": 1,
-          "description": "책 번호",
+          "description": "파트 번호",
           "required": true
         }
       ],

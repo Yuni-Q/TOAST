@@ -1,0 +1,246 @@
+{
+  "/keeps": {
+    "get": {
+      "tags": [
+        "keeps"
+      ],
+      "summary": "책 목록",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [{
+        "name": "Authorization",
+        "in": "header",
+        "type": "string",
+        "description": "API 인증 키",
+        "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Nywibmlja05hbWUiOm51bGwsImVtYWlsIjoiYWFAYWEuY29tIiwiaWF0IjoxNTQzMDY5NTczLCJleHAiOjE1NDM2NzQzNzMsImlzcyI6Ik9ORVBJQyIsInN1YiI6InVzZXJJbmZvIn0.yOCYZq4pEH0wVJciToRkl8W8kcRwufMXW2sUEI8dCks",
+        "required": true
+      }],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              },
+              "result": {
+                "type": "integer",
+                "example": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "post": {
+      "tags": [
+        "keeps"
+      ],
+      "summary": "tost keep",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "type": "string",
+          "description": "API 인증 키",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQyLCJuaWNrTmFtZSI6bnVsbCwiZW1haWwiOiJhYUBhYS5jb20iLCJpYXQiOjE1NDY4NDk0NTYsImV4cCI6MTU0NzQ1NDI1NiwiaXNzIjoiT05FUElDIiwic3ViIjoidXNlckluZm8ifQ.XlubXtxCv3pvjjILa-WsypOxU5OiL6ph6r9-vdF6Ztc",
+          "required": true
+        },
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "userId": {
+                "type": "integer",
+                "example": 1
+              },
+              "tostId": {
+                "type": "integer",
+                "example": 1
+              }
+            }
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              },
+              "result": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "description": "글 리스트",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 28
+                    },
+                    "userId": {
+                      "type": "integer",
+                      "example": 139
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2018-11-24T15:16:33.000Z"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2018-11-24T15:34:34.000Z"
+                    },
+                    "date": {
+                      "type": "string",
+                      "example": "2018-11-24"
+                    },
+                    "content": {
+                      "type": "string",
+                      "example": "aaa"
+                    },
+                    "location": {
+                      "type": "string",
+                      "example": "seoul"
+                    },
+                    "lon": {
+                      "type": "float",
+                      "example": 111.111
+                    },
+                    "lat": {
+                      "type": "float",
+                      "example": 111.111
+                    },
+                    "share": {
+                      "type": "integer",
+                      "example": null
+                    },
+                    "imgUrl": {
+                      "type": "string",
+                      "example": "https://yunhee.s3.amazonaws.com/yzORnu5p.png"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/keeps/{id}": {
+    "delete": {
+      "tags": [
+        "keeps"
+      ],
+      "summary": "keep 지우기",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [{
+          "name": "Authorization",
+          "in": "header",
+          "type": "string",
+          "description": "API 인증 키",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQyLCJuaWNrTmFtZSI6bnVsbCwiZW1haWwiOiJhYUBhYS5jb20iLCJpYXQiOjE1NDY4NDk0NTYsImV4cCI6MTU0NzQ1NDI1NiwiaXNzIjoiT05FUElDIiwic3ViIjoidXNlckluZm8ifQ.XlubXtxCv3pvjjILa-WsypOxU5OiL6ph6r9-vdF6Ztc",
+          "required": true
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "type": "integer",
+          "default": 1,
+          "description": "keep 번호",
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              },
+              "result": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "description": "글 리스트",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 28
+                    },
+                    "userId": {
+                      "type": "integer",
+                      "example": 139
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2018-11-24T15:16:33.000Z"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2018-11-24T15:34:34.000Z"
+                    },
+                    "date": {
+                      "type": "string",
+                      "example": "2018-11-24"
+                    },
+                    "content": {
+                      "type": "string",
+                      "example": "aaa"
+                    },
+                    "location": {
+                      "type": "string",
+                      "example": "seoul"
+                    },
+                    "lon": {
+                      "type": "float",
+                      "example": 111.111
+                    },
+                    "lat": {
+                      "type": "float",
+                      "example": 111.111
+                    },
+                    "share": {
+                      "type": "integer",
+                      "example": null
+                    },
+                    "imgUrl": {
+                      "type": "string",
+                      "example": "https://yunhee.s3.amazonaws.com/yzORnu5p.png"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

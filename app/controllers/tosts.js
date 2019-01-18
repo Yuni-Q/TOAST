@@ -44,11 +44,15 @@ router.post('/', async (req, res) => {
   // 서버에 업로드 완료 후
   form.parse(req, async (err, fields, files) => {
     if (!files.file) {
+      const partId = parseInt(fields.partId, 10);
+      const share = parseInt(fields.share, 10);
+      const userId = parseInt(fields.userId, 10);
       const read = await db.tosts.create({
         title: fields.title,
         content: fields.content,
-        partId: fields.partId,
-        share: fields.share,
+        partId,
+        share,
+        userId,
       });
       res.json(resultFormat(true, null, read));
       return;
@@ -73,12 +77,14 @@ router.post('/', async (req, res) => {
     });
     const baseUrl = 'https://yunhee.s3.amazonaws.com/';
     const fileUrl = baseUrl + url;
+    const partId = parseInt(fields.partId, 10);
+    const share = parseInt(fields.share, 10);
     const result = await db.tosts.create({
       title: fields.title,
       content: fields.content,
       fileUrl,
-      partId: fields.partId,
-      share: fields.share,
+      partId,
+      share,
     });
     res.json(resultFormat(true, null, result));
     // unlink tmp files
@@ -108,10 +114,11 @@ router.put('/:id', isLoggedIn, async (req, res) => {
   // 서버에 업로드 완료 후
   form.parse(req, isLoggedIn, async (err, fields, files) => {
     if (!files.file) {
+      const share = parseInt(fields.share, 10);
       const read = await db.tosts.update({
         title: fields.title,
         content: fields.content,
-        share: fields.share,
+        share,
       }, {
         where: {
           id: req.params.id,
@@ -140,11 +147,12 @@ router.put('/:id', isLoggedIn, async (req, res) => {
     });
     const baseUrl = 'https://yunhee.s3.amazonaws.com/';
     const fileUrl = baseUrl + url;
+    const share = parseInt(fields.share, 10);
     const read = await db.tosts.update({
       title: fields.title,
       content: fields.content,
       fileUrl,
-      share: fields.share,
+      share,
     }, {
       where: {
         id: req.params.id,

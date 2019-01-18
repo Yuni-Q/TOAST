@@ -1,0 +1,317 @@
+{
+  "/alerts": {
+    "post": {
+      "tags": [
+        "alerts"
+      ],
+      "summary": "신고 생성",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "type": "string",
+          "description": "API 인증 키",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Nywibmlja05hbWUiOm51bGwsImVtYWlsIjoiYWFAYWEuY29tIiwiaWF0IjoxNTQzMDY5NTczLCJleHAiOjE1NDM2NzQzNzMsImlzcyI6Ik9ORVBJQyIsInN1YiI6InVzZXJJbmZvIn0.yOCYZq4pEH0wVJciToRkl8W8kcRwufMXW2sUEI8dCks",
+          "required": true
+        },
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "example": "신고합니다."
+              },
+              "content": {
+                "type": "string",
+                "example": "목소리가 별로네요"
+              },
+              "tostId": {
+                "type": "integer",
+                "example": 1
+              }
+            }
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "get": {
+      "tags": [
+        "alerts"
+      ],
+      "summary": "신고 조회",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "type": "string",
+          "description": "API 인증 키",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Nywibmlja05hbWUiOm51bGwsImVtYWlsIjoiYWFAYWEuY29tIiwiaWF0IjoxNTQzMDY5NTczLCJleHAiOjE1NDM2NzQzNzMsImlzcyI6Ik9ORVBJQyIsInN1YiI6InVzZXJJbmZvIn0.yOCYZq4pEH0wVJciToRkl8W8kcRwufMXW2sUEI8dCks",
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              },
+              "result": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "description": "유저 리스트",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 12
+                    },
+                    "nickName": {
+                      "type": "string",
+                      "example": "aa"
+                    },
+                    "token": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsIm5pY2tOYW1lIjpudWxsLCJlbWFpbCI6ImFhQGFhLmNvbSIsImlhdCI6MTU0MzA3MzU4NCwiZXhwIjoxNTQzNjc4Mzg0LCJpc3MiOiJPTkVQSUMiLCJzdWIiOiJ1c2VySW5mbyJ9.8lKBePdYO7Wv3bkAyAUUGfxbZwzZk7JNvuMx351Kfpg"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "aa"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2018-11-24T15:16:33.000Z"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2018-11-24T15:34:34.000Z"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/alerts/{id}": {
+    "get": {
+      "tags": [
+        "alerts"
+      ],
+      "summary": "신고 하나 조회",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "type": "string",
+          "description": "API 인증 키",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Nywibmlja05hbWUiOm51bGwsImVtYWlsIjoiYWFAYWEuY29tIiwiaWF0IjoxNTQzMDY5NTczLCJleHAiOjE1NDM2NzQzNzMsImlzcyI6Ik9ORVBJQyIsInN1YiI6InVzZXJJbmZvIn0.yOCYZq4pEH0wVJciToRkl8W8kcRwufMXW2sUEI8dCks",
+          "required": true
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "type": "integer",
+          "default": 1,
+          "description": "tost 번호",
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              },
+              "result": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "description": "유저 리스트",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 12
+                    },
+                    "nickName": {
+                      "type": "string",
+                      "example": "aa"
+                    },
+                    "token": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsIm5pY2tOYW1lIjpudWxsLCJlbWFpbCI6ImFhQGFhLmNvbSIsImlhdCI6MTU0MzA3MzU4NCwiZXhwIjoxNTQzNjc4Mzg0LCJpc3MiOiJPTkVQSUMiLCJzdWIiOiJ1c2VySW5mbyJ9.8lKBePdYO7Wv3bkAyAUUGfxbZwzZk7JNvuMx351Kfpg"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "aa"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2018-11-24T15:16:33.000Z"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2018-11-24T15:34:34.000Z"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "delete": {
+      "tags": [
+        "alerts"
+      ],
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "type": "string",
+          "description": "API 인증 키",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Nywibmlja05hbWUiOm51bGwsImVtYWlsIjoiYWFAYWEuY29tIiwiaWF0IjoxNTQzMDY5NTczLCJleHAiOjE1NDM2NzQzNzMsImlzcyI6Ik9ORVBJQyIsInN1YiI6InVzZXJJbmZvIn0.yOCYZq4pEH0wVJciToRkl8W8kcRwufMXW2sUEI8dCks",
+          "required": true
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "type": "integer",
+          "default": 3,
+          "description": "tost 번호",
+          "required": true
+        }
+      ],
+      "summary": "신고 삭제",
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "put": {
+      "tags": [
+        "alerts"
+      ],
+      "summary": "신고 수정",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "type": "string",
+          "description": "API 인증 키",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Nywibmlja05hbWUiOm51bGwsImVtYWlsIjoiYWFAYWEuY29tIiwiaWF0IjoxNTQzMDY5NTczLCJleHAiOjE1NDM2NzQzNzMsImlzcyI6Ik9ORVBJQyIsInN1YiI6InVzZXJJbmZvIn0.yOCYZq4pEH0wVJciToRkl8W8kcRwufMXW2sUEI8dCks",
+          "required": true
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "type": "integer",
+          "default": 1,
+          "description": "tost 번호",
+          "required": true
+        },
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "example": "신고합니다."
+              },
+              "content": {
+                "type": "string",
+                "example": "목소리가 별로네요"
+              },
+              "tostId": {
+                "type": "integer",
+                "example": 1
+              }
+            }
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

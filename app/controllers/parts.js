@@ -44,10 +44,11 @@ router.post('/', async (req, res) => {
   // 서버에 업로드 완료 후
   form.parse(req, async (err, fields, files) => {
     if (!files.image) {
+      const bookId = parseInt(fields.bookId, 10);
       const read = await db.parts.create({
         title: fields.title,
         content: fields.content,
-        bookId: fields.bookId,
+        bookId,
       });
       res.json(resultFormat(true, null, read));
       return;
@@ -72,11 +73,12 @@ router.post('/', async (req, res) => {
     });
     const baseUrl = 'https://yunhee.s3.amazonaws.com/';
     const imgUrl = baseUrl + imageUrl;
+    const bookId = parseInt(fields.bookId, 10);
     const read = await db.parts.create({
       title: fields.title,
       content: fields.content,
       imgUrl,
-      bookId: fields.bookId,
+      bookId,
     });
     res.json(resultFormat(true, null, read));
     // unlink tmp files
@@ -104,7 +106,7 @@ router.put('/:id', isLoggedIn, async (req, res) => {
   for (let i = 0; i < 8; i += 1) fileName += possible.charAt(Math.floor(Math.random() * possible.length));
 
   // 서버에 업로드 완료 후
-  form.parse(req, isLoggedIn, async (err, fields, files) => {
+  form.parse(req, async (err, fields, files) => {
     if (!files.image) {
       const read = await db.parts.update({
         title: fields.title,
@@ -178,7 +180,7 @@ router.get('/:id', isLoggedIn, async (req, res) => {
       select
         * 
       from parts 
-        join parts on parts.id = tosts.partId
+        join tosts on parts.id = tosts.partId
         where parts.id = ${req.params.id}
         and tosts.share = 1;
       `;

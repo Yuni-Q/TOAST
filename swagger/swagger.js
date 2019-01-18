@@ -1,8 +1,13 @@
 const { paths } = require('./path/base');
+const alerts = require('./path/alerts');
 const users = require('./path/users');
 const signIn = require('./path/signIn');
 const books = require('./path/books');
 const likes = require('./path/likes');
+const keeps = require('./path/keeps');
+const parts = require('./path/parts');
+const tosts = require('./path/tosts');
+
 // const { definitions } = require('./definitions/definitions');
 
 Object.keys(users).forEach((key) => {
@@ -21,12 +26,28 @@ Object.keys(likes).forEach((key) => {
   paths[key] = likes[key];
 });
 
+Object.keys(alerts).forEach((key) => {
+  paths[key] = alerts[key];
+});
+
+Object.keys(keeps).forEach((key) => {
+  paths[key] = keeps[key];
+});
+
+Object.keys(parts).forEach((key) => {
+  paths[key] = parts[key];
+});
+
+Object.keys(tosts).forEach((key) => {
+  paths[key] = tosts[key];
+});
+
 module.exports = {
   swagger: '2.0',
   info: {
-    title: "ONEPIC-Backend",
-    version: "1.0.0",
-    description: "Make Node.js",
+    title: 'TOAST-Backend',
+    version: '1.0.0',
+    description: 'Make Node.js',
   },
   license: {
     name: 'Apache 2.0',

@@ -1,5 +1,4 @@
 const express = require('express');
-const sequelize = require('sequelize');
 
 const router = express.Router();
 const {
@@ -13,18 +12,18 @@ const {
 
 
 router.get('/', isLoggedIn, async (req, res) => {
-  const read = await db.parts.findAll({});
+  const read = await db.alerts.findAll({});
   res.json(resultFormat(true, null, read));
 });
 
 
-router.post('/', async (req, res) => {
+router.post('/', isLoggedIn, async (req, res) => {
   const {
     title,
     content,
     tostId,
   } = req.body;
-  const result = await db.parts.create({
+  const result = await db.alerts.create({
     title,
     content,
     tostId,
@@ -39,7 +38,7 @@ router.put('/:id', isLoggedIn, async (req, res) => {
     content,
     tostId,
   } = req.body;
-  const result = await db.parts.update(
+  const result = await db.alerts.update(
     {
       title,
       content,
@@ -55,14 +54,14 @@ router.put('/:id', isLoggedIn, async (req, res) => {
   res.json(resultFormat(true, null, result));
 });
 
-// 게시글 id에 해당하는 글 지우기 -> deleteparts에 넣기
+// 게시글 id에 해당하는 글 지우기 -> deletealerts에 넣기
 router.delete('/:id', isLoggedIn, async (req, res) => {
   const {
     id,
   } = req.params;
-  // await db.deleteparts.create({
+  // await db.deletealerts.create({
   // });
-  const result = await db.parts.destroy({
+  const result = await db.alerts.destroy({
     where: {
       id,
     },
@@ -71,15 +70,10 @@ router.delete('/:id', isLoggedIn, async (req, res) => {
 });
 
 router.get('/:id', isLoggedIn, async (req, res) => {
-  const query = `
-    select
-      * 
-    from parts 
-      join parts on parts.id = tosts.partId
-      where parts.id = ${req.params.id};
-    `;
-  const result = await db.sequelize.query(query, {
-    type: sequelize.QueryTypes.SELECT,
+  const result = await db.alerts.findOne({
+    where: {
+      id: req.params.id,
+    },
   });
   res.json(resultFormat(true, null, result));
 });

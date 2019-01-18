@@ -1,4 +1,5 @@
 const express = require('express');
+const sequelize = require('sequelize');
 const db = require('../models');
 const {
   isLoggedIn,
@@ -10,12 +11,17 @@ const {
 const router = express.Router();
 
 router.get('/', isLoggedIn, async (req, res) => {
-  const read = await db.keeps.findAll({
-    where: {
-      id: req.user.id,
-    },
+  const query = `
+    select
+      * 
+    from keeps 
+      join tosts on keeps.tostId = tosts.id
+      where keeps.userId = ${req.user.id};
+    `;
+  const result = await db.sequelize.query(query, {
+    type: sequelize.QueryTypes.SELECT,
   });
-  res.json(resultFormat(true, null, read));
+  res.json(resultFormat(true, null, result));
 });
 
 

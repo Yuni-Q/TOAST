@@ -11,7 +11,7 @@ module.exports = (Sequelize, DataTypes) => {
       title: DataTypes.STRING,
       content: DataTypes.STRING,
       fileUrl: DataTypes.STRING,
-      pastId: DataTypes.INTEGER,
+      partId: DataTypes.INTEGER,
       userId: DataTypes.INTEGER,
       share: DataTypes.BOOLEAN,
     }, {},

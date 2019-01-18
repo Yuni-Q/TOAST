@@ -1,10 +1,10 @@
 {
-  "/books": {
+  "/tosts": {
     "get": {
       "tags": [
-        "books"
+        "tosts"
       ],
-      "summary": "책 목록",
+      "summary": "tost 목록",
       "produces": [
         "application/json"
       ],
@@ -40,9 +40,9 @@
     },
     "post": {
       "tags": [
-        "books"
+        "tosts"
       ],
-      "summary": "책 만들기",
+      "summary": "tost 만들기",
       "consumes": [
         "multipart/form-data"
       ],
@@ -58,7 +58,7 @@
           "required": true
         },
         {
-          "name": "image",
+          "name": "file",
           "in": "formData",
           "description": "file to upload",
           "required": false,
@@ -77,6 +77,27 @@
           "description": "file to upload",
           "required": false,
           "type": "text"
+        },
+        {
+          "name": "partId",
+          "in": "formData",
+          "description": "file to upload",
+          "required": false,
+          "type": "integer"
+        },
+        {
+          "name": "userId",
+          "in": "formData",
+          "description": "file to upload",
+          "required": false,
+          "type": "integer"
+        },
+        {
+          "name": "share",
+          "in": "formData",
+          "description": "file to upload",
+          "required": false,
+          "type": "integer"
         }
       ],
       "responses": {
@@ -151,12 +172,12 @@
       }
     }
   },
-  "/books/{id}": {
+  "/tosts/{id}": {
     "get": {
       "tags": [
-        "books"
+        "tosts"
       ],
-      "summary": "책 조회",
+      "summary": "tost 조회",
       "produces": [
         "application/json"
       ],
@@ -173,7 +194,7 @@
           "in": "path",
           "type": "integer",
           "default": 2,
-          "description": "책 번호",
+          "description": "tost 번호",
           "required": true
         }
       ],
@@ -259,9 +280,9 @@
     },
     "put": {
       "tags": [
-        "books"
+        "tosts"
       ],
-      "summary": "책 만들기",
+      "summary": "tost 수정하기",
       "consumes": [
         "multipart/form-data"
       ],
@@ -281,11 +302,11 @@
           "in": "path",
           "type": "integer",
           "default": 30,
-          "description": "책 번호",
+          "description": "tost 번호",
           "required": true
         },
         {
-          "name": "image",
+          "name": "file",
           "in": "formData",
           "description": "file to upload",
           "required": false,
@@ -304,6 +325,13 @@
           "description": "file to upload",
           "required": false,
           "type": "text"
+        },
+        {
+          "name": "share",
+          "in": "formData",
+          "description": "file to upload",
+          "required": false,
+          "type": "integer"
         }
       ],
       "responses": {
@@ -379,9 +407,9 @@
     },
     "delete": {
       "tags": [
-        "books"
+        "tosts"
       ],
-      "summary": "책 지우기",
+      "summary": "tost 지우기",
       "produces": [
         "application/json"
       ],
@@ -398,7 +426,7 @@
           "in": "path",
           "type": "integer",
           "default": 1,
-          "description": "책 번호",
+          "description": "tost 번호",
           "required": true
         }
       ],
