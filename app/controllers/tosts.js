@@ -1,5 +1,5 @@
 const express = require('express');
-// const sequelize = require('sequelize');
+const sequelize = require('sequelize');
 
 const router = express.Router();
 const AWS = require('aws-sdk');
@@ -93,12 +93,18 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/users', isLoggedIn, async (req, res) => {
-  const read = await db.tosts.findAll({
-    where: {
-      userId: req.user.id,
-    },
+  const query = `
+      select
+        * 
+      from tosts 
+        left join (select count(*) as keepsCount, tostId from keeps JOIN tosts on tosts.id = keeps.tostId ) as keeps on keeps.tostId = tosts.id
+        left join (select count(*) as alertCount, tostId from alerts JOIN tosts on tosts.id = alerts.tostId ) as alerts on alerts.tostId = tosts.id
+        where tosts.userId = ${req.user.id}
+      `;
+  const result = await db.sequelize.query(query, {
+    type: sequelize.QueryTypes.SELECT,
   });
-  res.json(resultFormat(true, null, read));
+  res.json(resultFormat(true, null, result));
 });
 
 router.put('/:id', isLoggedIn, async (req, res) => {

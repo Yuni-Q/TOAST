@@ -1,4 +1,44 @@
 {
+  "/tosts/users": {
+    "get": {
+      "tags": [
+        "tosts"
+      ],
+      "summary": "tost 목록",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [{
+        "name": "Authorization",
+        "in": "header",
+        "type": "string",
+        "description": "API 인증 키",
+        "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Nywibmlja05hbWUiOm51bGwsImVtYWlsIjoiYWFAYWEuY29tIiwiaWF0IjoxNTQzMDY5NTczLCJleHAiOjE1NDM2NzQzNzMsImlzcyI6Ik9ORVBJQyIsInN1YiI6InVzZXJJbmZvIn0.yOCYZq4pEH0wVJciToRkl8W8kcRwufMXW2sUEI8dCks",
+        "required": true
+      }],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              },
+              "result": {
+                "type": "integer",
+                "example": 0
+              }
+            }
+          }
+        }
+      }
+    }
+  },
   "/tosts": {
     "get": {
       "tags": [
