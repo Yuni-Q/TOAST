@@ -44,9 +44,9 @@ router.get('/', isLoggedIn, async (req, res) => {
     from toasts 
     where createdAt >= '${time}'
   `;
-  result.count = await db.sequelize.query(query2, {
+  result.count = (await db.sequelize.query(query2, {
     type: sequelize.QueryTypes.SELECT,
-  });
+  })).length;
 
   res.json(resultFormat(true, null, result));
 });
