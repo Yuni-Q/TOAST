@@ -22,7 +22,8 @@ router.get('/', isLoggedIn, async (req, res) => {
 
   const query = `
     select
-      * 
+      *,
+      questions.content as time 
     from toasts 
       join questions on questions.id = toasts.questionId
       join parts on parts.id = questions.partId
