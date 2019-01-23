@@ -22,8 +22,19 @@ router.get('/', isLoggedIn, async (req, res) => {
 
   const query = `
     select
-      *,
-      questions.content as time 
+      books.title as bookTitle,
+      parts.title as partTitle,
+      questions.title as questionTitle,
+      questions.content as time,
+      bookId,
+      partId,
+      share,
+      userId,
+      questionId,
+      imgUrl,
+      fileUrl,
+      questions.createdAt as createdAt,
+      questions.updatedAt as updatedAt
     from toasts 
       join questions on questions.id = toasts.questionId
       join parts on parts.id = questions.partId
@@ -35,8 +46,6 @@ router.get('/', isLoggedIn, async (req, res) => {
   result.tosts = await db.sequelize.query(query, {
     type: sequelize.QueryTypes.SELECT,
   });
-
-  console.log('aaaa', result);
 
   const time = dayjs().set('hour', 0).set('minute', 0).set('second', 0)
     .add(-9, 'hour')
@@ -51,8 +60,6 @@ router.get('/', isLoggedIn, async (req, res) => {
     type: sequelize.QueryTypes.SELECT,
   })).length;
 
-  console.log('bb', result);
-  // res.send(result);
   res.json(resultFormat(true, null, result));
 });
 
