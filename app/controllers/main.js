@@ -18,7 +18,7 @@ const {
 
 
 router.get('/', isLoggedIn, async (req, res) => {
-  const result = [];
+  const result = {};
 
   const query = `
     select
@@ -35,6 +35,8 @@ router.get('/', isLoggedIn, async (req, res) => {
     type: sequelize.QueryTypes.SELECT,
   });
 
+  console.log('aaaa', result);
+
   const time = dayjs().set('hour', 0).set('minute', 0).set('second', 0)
     .add(-9, 'hour')
     .format('YYYY-MM-DD HH:mm:ss');
@@ -48,6 +50,8 @@ router.get('/', isLoggedIn, async (req, res) => {
     type: sequelize.QueryTypes.SELECT,
   })).length;
 
+  console.log('bb', result);
+  // res.send(result);
   res.json(resultFormat(true, null, result));
 });
 
