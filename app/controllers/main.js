@@ -23,15 +23,8 @@ router.get('/', async (req, res) => {
       parts.title as partTitle,
       questions.title as questionTitle,
       questions.content as time,
-      bookId,
-      partId,
-      share,
-      userId,
-      questionId,
       imgUrl,
-      fileUrl,
-      toasts.createdAt as createdAt,
-      toasts.updatedAt as updatedAt
+      fileUrl
     from toasts 
       join questions on questions.id = toasts.questionId
       join parts on parts.id = questions.partId
