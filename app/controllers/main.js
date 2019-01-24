@@ -3,10 +3,7 @@ const sequelize = require('sequelize');
 const dayjs = require('dayjs');
 
 const router = express.Router();
-// const AWS = require('aws-sdk');
-// const formidable = require('formidable');
-// const fs = require('fs');
-// const path = require('path');
+
 const {
   isLoggedIn,
 } = require('../helpers/checkLogin');
@@ -33,8 +30,8 @@ router.get('/', isLoggedIn, async (req, res) => {
       questionId,
       imgUrl,
       fileUrl,
-      questions.createdAt as createdAt,
-      questions.updatedAt as updatedAt
+      toasts.createdAt as createdAt,
+      toasts.updatedAt as updatedAt
     from toasts 
       join questions on questions.id = toasts.questionId
       join parts on parts.id = questions.partId
