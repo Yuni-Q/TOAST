@@ -40,7 +40,7 @@ router.get('/', isLoggedIn, async (req, res) => {
     order by toasts.createdAt DESC
     limit 5
   `;
-  result.tosts = await db.sequelize.query(query, {
+  result.toasts = await db.sequelize.query(query, {
     type: sequelize.QueryTypes.SELECT,
   });
 
