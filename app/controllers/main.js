@@ -56,7 +56,7 @@ router.get('/', async (req, res) => {
   result.count = (await db.sequelize.query(query2, {
     type: sequelize.QueryTypes.SELECT,
   })).length;
-
+  console.log(resultFormat(true, null, result));
   res.json(resultFormat(true, null, result));
 });
 
