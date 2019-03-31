@@ -12,12 +12,14 @@ const {
   isNotLoggedIn,
 } = require('../helpers/checkLogin');
 
+const cryptoHelper =require('../helpers/cryptoHelper');
+
 const router = express.Router();
 
 router.post('/', isNotLoggedIn, async (req, res) => {
   const {
     email,
-    password,
+    password: pwd,
   } = req.body;
   const secret = req.app.get('jwt-secret');
 
@@ -31,7 +33,11 @@ router.post('/', isNotLoggedIn, async (req, res) => {
     res.json(resultFormat(false, '이메일이 존재하지 않습니다.'));
     return;
   }
-
+  if ( user && user.auth) {
+    res.json(resultFormat(false, '이메일 인증이 필요합니다.'));
+    return;
+  }
+  const password = cryptoHelper.makePssword(pwd);
   if (user.password === password) {
     const t = new Promise((resolve, reject) => {
       jwt.sign(
@@ -42,7 +48,7 @@ router.post('/', isNotLoggedIn, async (req, res) => {
         },
         secret, {
           expiresIn: '7d',
-          issuer: 'ONEPIC',
+          issuer: 'TOAST',
           subject: 'userInfo',
         }, (err, tt) => {
           if (err) reject(err);

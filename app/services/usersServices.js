@@ -2,10 +2,11 @@ const {
   users,
   deleteUsers,
 } = require('../models');
+const cryptoHelper = require('../helpers/cryptoHelper')
 
 module.exports = {
 
-  usersFindOneUserName: ({
+  usersFindOneEmail: ({
     email,
   }) => users.findOne({
     where: {
@@ -15,12 +16,23 @@ module.exports = {
   createUser: async (
     {
       email,
-      password,
+      password: pwd,
+      nickName,
+      age,
+      gender,
+      deviceToken,
+      type,
     },
   ) => {
+    const password = cryptoHelper.makePssword(pwd);
     await users.create({
       email,
       password,
+      nickName,
+      age,
+      gender,
+      deviceToken,
+      type,
     });
   },
 
@@ -29,14 +41,23 @@ module.exports = {
       id,
     }, {
       email,
+      password: pwd,
       nickName,
-      password,
+      age,
+      gender,
+      deviceToken,
+      type,
     },
   ) => {
+    const password = cryptoHelper.makePssword(pwd);
     await users.update({
       email,
-      nickName,
       password,
+      nickName,
+      age,
+      gender,
+      deviceToken,
+      type,
     }, {
       where: {
         id,

@@ -14,20 +14,25 @@ exports.isLoggedIn = async (req, res, next) => {
       res.json(resultFormat(false, '토큰이 없습니다.', token));
       return;
     }
-    const user = new Promise(
-      (resolve, reject) => {
-        jwt.verify(token, req.app.get('jwt-secret'), (err, decoded) => {
-          if (err) reject(err);
-          resolve(decoded);
-        });
-      },
-    );
-    // const user = await users.findOne({ where: { token } });
-    await user.then(
-      (u) => {
-        req.user = u;
-      },
-    );
+    const user = await users.findOne({
+      where: {
+        token,
+      }
+    });
+    // const user = new Promise(
+    //   (resolve, reject) => {
+    //     jwt.verify(token, req.app.get('jwt-secret'), (err, decoded) => {
+    //       if (err) reject(err);
+    //       resolve(decoded);
+    //     });
+    //   },
+    // );
+    // // const user = await users.findOne({ where: { token } });
+    // await user.then(
+    //   (u) => {
+    req.user = user;
+    //   },
+    // );
     next();
   } catch (error) {
     res.json(resultFormat(false, '에러 발생.', error));
