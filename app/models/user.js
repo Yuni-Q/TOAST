@@ -18,6 +18,11 @@ module.exports = (Sequelize, DataTypes) => {
       updatedAt: DataTypes.DATE,
       profileImg: DataTypes.STRING,
       deviceToken: DataTypes.STRING,
+      age: DataTypes.INTEGER,
+      gender: DataTypes.STRING,
+      authToken: DataTypes.STRING,
+      admin: DataTypes.BOOLEAN,
+      leave: DataTypes.BOOLEAN,
     },
     {},
   );
