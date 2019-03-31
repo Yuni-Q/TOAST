@@ -43,7 +43,7 @@ router.post("/email", async (req, res, next) => {
   });
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
-      res.json(resultFormat(false, error));
+      return res.json(resultFormat(false, error));
     } else {
       console.log('Email sent: ' + info.response);
     }
@@ -58,7 +58,6 @@ router.get("/auth", async (req, res, next) => {
       email,
     }
   });
-
   if (user && user.authToken === req.query.token) {
     await users.update({
       auth: 1,
