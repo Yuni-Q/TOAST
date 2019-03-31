@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
-// const {
-//   users,
-// } = require('../models');
+const {
+  users,
+} = require('../models');
 const {
   resultFormat,
 } = require('../helpers/formHelper');
