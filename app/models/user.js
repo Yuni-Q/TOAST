@@ -23,6 +23,7 @@ module.exports = (Sequelize, DataTypes) => {
       authToken: DataTypes.STRING,
       admin: DataTypes.BOOLEAN,
       leave: DataTypes.BOOLEAN,
+      auth: DataTypes.BOOLEAN,
     },
     {},
   );
