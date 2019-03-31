@@ -37,7 +37,7 @@ router.post('/', isNotLoggedIn, async (req, res) => {
     res.json(resultFormat(false, '이메일 인증이 필요합니다.'));
     return;
   }
-  const password = cryptoHelper.makePssword(pwd);
+  const password = await cryptoHelper.makePssword(pwd);
   if (user.password === password) {
     const t = new Promise((resolve, reject) => {
       jwt.sign(

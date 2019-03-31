@@ -24,7 +24,7 @@ module.exports = {
       type,
     },
   ) => {
-    const password = cryptoHelper.makePssword(pwd);
+    const password = await cryptoHelper.makePssword(pwd);
     await users.create({
       email,
       password,
@@ -49,7 +49,7 @@ module.exports = {
       type,
     },
   ) => {
-    const password = cryptoHelper.makePssword(pwd);
+    const password = await cryptoHelper.makePssword(pwd);
     await users.update({
       email,
       password,
