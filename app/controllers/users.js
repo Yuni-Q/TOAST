@@ -152,7 +152,7 @@ router.get('/:id', isLoggedIn, async (req, res) => {
 //   res.json(resultFormat(true, null));
 // });
 
-router.post("/mail", async (req, res, next) => {
+router.post("/email", async (req, res, next) => {
   const email = req.body.email;
   const token = uuidv1();
   const transporter = nodemailer.createTransport({
