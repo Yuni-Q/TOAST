@@ -61,7 +61,7 @@ router.get("/auth", async (req, res, next) => {
 
   if (user && user.authToken === req.query.token) {
     await users.update({
-      auth: true,
+      auth: 1,
     }, {
       where: {
         email,
