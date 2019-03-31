@@ -16,6 +16,54 @@ const {
 
 const router = express.Router();
 
+router.post("/email", async (req, res, next) => {
+  const email = req.body.email;
+  const token = uuidv1();
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: global.config.email.id, // gmail 계정 아이디를 입력 
+      pass: global.config.email.pwd // gmail 계정의 비밀번호를 입력
+    }
+  });
+  const mailOptions = {
+    from: global.config.email.id, // 발송 메일 주소 (위에서 작성한 gmail 계정 아이디) 
+    // to: email , // 수신 메일 주소 
+    to: email,
+    subject: '안녕하세요, TOAST입니다. 이메일 인증을 해주세요.',
+    html: `<p>아래의 링크를 클릭해주세요 !</p>
+           <a href='http://13.113.246.46:8080/users/auth?email=${email}&token=${token}'>인증하기</a>`
+  };
+  await users.update({
+    authToken: token,
+  }, {
+    where: {
+      email,
+    },
+  });
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      res.json(resultFormat(false, error));
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+  res.json(resultFormat(true, null));
+})
+
+router.get("/auth", async (req, res, next) => {
+  const user = await users.findOne({
+    where: {
+      email: req.query.email,
+    }
+  });
+
+  if (user && user.authToken === req.query.token) {
+    return res.send('인증 성공');
+  }
+  res.send('인증 실패');
+})
+
 router.get('/', isLoggedIn, async (req, res) => {
   try {
     const user = await users.findAll({});
@@ -152,53 +200,7 @@ router.get('/:id', isLoggedIn, async (req, res) => {
 //   res.json(resultFormat(true, null));
 // });
 
-router.post("/email", async (req, res, next) => {
-  const email = req.body.email;
-  const token = uuidv1();
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: global.config.email.id, // gmail 계정 아이디를 입력 
-      pass: global.config.email.pwd // gmail 계정의 비밀번호를 입력
-    }
-  });
-  const mailOptions = {
-    from: global.config.email.id, // 발송 메일 주소 (위에서 작성한 gmail 계정 아이디) 
-    // to: email , // 수신 메일 주소 
-    to: email,
-    subject: '안녕하세요, TOAST입니다. 이메일 인증을 해주세요.',
-    html: `<p>아래의 링크를 클릭해주세요 !</p>
-           <a href='http://13.113.246.46:8080/users/auth?email=${email}&token=${token}'>인증하기</a>`
-  };
-  await users.update({
-    authToken: token,
-  }, {
-    where: {
-      email,
-    },
-  });
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      res.json(resultFormat(false, error));
-    } else {
-      console.log('Email sent: ' + info.response);
-    }
-  });
-  res.json(resultFormat(true, null));
-})
 
-router.get("/auth", async (req, res, next) => {
-  const user = await users.findOne({
-    where: {
-      email: req.query.email,
-    }
-  });
-
-  if (user.authToken === req.query.token) {
-    return res.send('성공');
-  }
-  res.send('실패');
-})
 
 
 module.exports = router;
