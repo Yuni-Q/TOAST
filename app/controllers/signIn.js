@@ -33,7 +33,7 @@ router.post('/', isNotLoggedIn, async (req, res) => {
     res.json(resultFormat(false, '이메일이 존재하지 않습니다.'));
     return;
   }
-  if ( user && user.auth) {
+  if ( user && !user.auth ) {
     res.json(resultFormat(false, '이메일 인증이 필요합니다.'));
     return;
   }
