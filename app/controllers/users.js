@@ -52,13 +52,21 @@ router.post("/email", async (req, res, next) => {
 })
 
 router.get("/auth", async (req, res, next) => {
+  const { email } = req.query;
   const user = await users.findOne({
     where: {
-      email: req.query.email,
+      email,
     }
   });
 
   if (user && user.authToken === req.query.token) {
+    await users.update({
+      auth: true,
+    }, {
+      where: {
+        email,
+      },
+    });
     return res.send('인증 성공');
   }
   res.send('인증 실패');
