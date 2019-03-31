@@ -187,7 +187,7 @@ router.post("/email", async (req, res, next) => {
   res.json(resultFormat(true, null));
 })
 
-router.post("/auth", async (req, res, next) => {
+router.get("/auth", async (req, res, next) => {
   const user = await users.findOne({
     where: {
       email: req.query.email,
