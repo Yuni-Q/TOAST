@@ -168,7 +168,7 @@ router.post("/email", async (req, res, next) => {
     to: email,
     subject: '안녕하세요, TOAST입니다. 이메일 인증을 해주세요.',
     html: `<p>아래의 링크를 클릭해주세요 !</p>
-           <a href='http://13.113.246.46:3000/users/auth/?email=${email}&token=${token}'>인증하기</a>`
+           <a href='http://13.113.246.46:3000/users/auth?email=${email}&token=${token}'>인증하기</a>`
   };
   await users.update({
     authToken: token,
