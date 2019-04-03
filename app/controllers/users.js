@@ -128,12 +128,12 @@ router.get('/:id', isLoggedIn, async (req, res) => {
   }
 });
 
-// router.put('/sns', isLoggedIn, async (req, res) => {
-//   try {
+router.put('/sns', isLoggedIn, async (req, res) => {
+  try {
 //     // response.statusCode
 //     // response.headers
 //     // response.body
-//     if (req.body.sns === 'kakao') {
+    if (req.body.sns === 'kakao') {
 //       let response = await request('https://kapi.kakao.com/v2/user/me', {
 //           // This example demonstrates all of the supported options.
 //           // Request method (uppercase): POST, DELETE, ...
@@ -175,9 +175,9 @@ router.get('/:id', isLoggedIn, async (req, res) => {
 
 //   // https://developers.kakao.com/docs/restapi/user-management#%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EB%B3%B4-%EC%9A%94%EC%B2%AD
 //       console.log('kakao', response);
-//     } else {
+    } else {
   // https://graph.facebook.com/me?fields=user_age_range,user_gender,id,name,email&access_token=EAAfr4OqZCqEkBABz2EvcKbRLQDmWTuqSHQ7PcfEfTKlPSffha89RJCMX4Pf4615TS0vPjAywEHjdqBs92kuHhgn3G5Ym3j2X5cUG2RvlUL8gh8Jrz5CI2y57bpLwFNP0SsldbNXHZCVUjXYZAVc0LOxgkKRk5zQXFuZA4pEZAvStI7c10UXhZAcgS627enqSKegyeskIGDnL93giqtGJPYEcobVP8tzyMvmTRRc4NIGQZDZD
-//         let response = await request(`https://graph.facebook.com/me?access_token=${req.body.access_token}`, {
+        let response = await request(`https://graph.facebook.com/me?access_token=${req.body.access_token}&field=id,name,gender,birthday`, {
 //         // This example demonstrates all of the supported options.
 //         // Request method (uppercase): POST, DELETE, ...
 //         method: 'GET',
@@ -194,19 +194,19 @@ router.get('/:id', isLoggedIn, async (req, res) => {
 //         // To use a custom/existing cookie jar.
 //         // https://www.npmjs.com/package/tough-cookie
 //         // cookieJar: new tough.CookieJar()
-//     });
+    });
 
 
-//     console.log('facebook', response);
-//       // return getJsonPojo(httpEntity, ResFacebookLoginPojo.class);
+    console.log('facebook', response);
+      // return getJsonPojo(httpEntity, ResFacebookLoginPojo.class);
 
-//     }
-//   } catch (error) {
-//     res.json(resultFormat(false, error.message));
-//     return;
-//   }
-//   res.json(resultFormat(true, null));
-// });
+    }
+  } catch (error) {
+    res.json(resultFormat(false, error.message));
+    return;
+  }
+  res.json(resultFormat(false, 'kakao나 facebook이 아닙니다.'));
+});
 
 
 
