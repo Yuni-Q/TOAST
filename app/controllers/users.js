@@ -26,24 +26,41 @@ router.put('/sns', isNotLoggedIn, async (req, res) => {
   };
   try {
     if (req.body.sns === 'kakao') {
-      const kakaoResponse = await request('https://kapi.kakao.com/v2/user/me', {
-          method: 'GET',
+      const kakaoResponse = await request('GET', 'https://kapi.kakao.com/v2/user/me', {
           headers: {
             Authorization: `Bearer ${req.body.accessToken}`,
           },
       });
-      response.nickName = kakaoResponse.properties.nickname;
-      response.email = kakaoResponse.kakao_account.email;
-      response.gender = kakaoResponse.kakao_account.gender;
+      const bufferOriginal = kakaoResponse.body.toString('utf8')
+      const json = JSON.parse(bufferOriginal);
+      response.nickName = json.properties.nickname;
+      response.email = json.kakao_account.email;
+      response.gender = json.kakao_account.gender;
+      await users.create({
+        email: response.email,
+        nickName: response.nickName,
+        gender: response.gender,
+        deviceToken: req.body.accessToken,
+        type: req.body.sns,
+      });
       res.json(resultFormat(true, null, response));
       return;
     } else {
-      const facebookResponse = await request(`https://graph.facebook.com/me?access_token=${req.body.accessToken}&field=id,name,gender,birthday`, {
+      const facebookResponse = await request('GET', `https://graph.facebook.com/me?access_token=${req.body.accessToken}&fields=id,name,gender,birthday,email`);
+      const bufferOriginal = facebookResponse.body.toString('utf8')
+      const json = JSON.parse(bufferOriginal);
+      response.nickName = json.name;
+      response.email = json.email;
+      response.year = (json.birthday).split('/')[2];
+      response.gender = json.gender;
+      await users.create({
+        email: response.email,
+        nickName: response.nickName,
+        age: response.year,
+        gender: response.gender,
+        deviceToken: req.body.accessToken,
+        type: req.body.sns,
       });
-      response.nickName = facebookResponse.name;
-      response.email = facebookResponse.email;
-      response.year = (facebookResponse.birthday).split('/')[2];
-      response.gender = facebookResponse.gender;
       res.json(resultFormat(true, null, response));
       return;
     }
