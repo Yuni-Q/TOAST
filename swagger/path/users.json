@@ -362,5 +362,75 @@
         }
       }
     }
+  },
+  "/users/sns": {
+    "put": {
+      "tags": [
+        "users"
+      ],
+      "summary": "sns 로그인",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "sns": {
+                "type": "string",
+                "example": "kakao"
+              },
+              "accessToken": {
+                "type": "string",
+                "example": "kkdjlvdjkasdflka"
+              }
+            }
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              },
+              "result": {
+                "type": "object",
+                "description": "유저 리스트",
+                "properties": {
+                  "nickName": {
+                    "type": "string",
+                    "example": "aa"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsIm5pY2tOYW1lIjpudWxsLCJlbWFpbCI6ImFhQGFhLmNvbSIsImlhdCI6MTU0MzA3MzU4NCwiZXhwIjoxNTQzNjc4Mzg0LCJpc3MiOiJPTkVQSUMiLCJzdWIiOiJ1c2VySW5mbyJ9.8lKBePdYO7Wv3bkAyAUUGfxbZwzZk7JNvuMx351Kfpg"
+                  },
+                  "gender": {
+                    "type": "string",
+                    "example": "aa"
+                  },
+                  "year": {
+                    "type": "string",
+                    "example": "2018-11-24T15:16:33.000Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
