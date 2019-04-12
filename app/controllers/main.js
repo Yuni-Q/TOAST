@@ -2,11 +2,11 @@ const express = require('express');
 const sequelize = require('sequelize');
 const dayjs = require('dayjs');
 
-const router = express.Router();
+const {
+  isLoggedIn,
+} = require('../helpers/checkLogin');
 
-// const {
-//   isLoggedIn,
-// } = require('../helpers/checkLogin');
+const router = express.Router();
 
 const db = require('../models');
 const {
@@ -14,7 +14,7 @@ const {
 } = require('../helpers/formHelper');
 
 
-router.get('/', async (req, res) => {
+router.get('/', isLoggedIn, async (req, res) => {
   const result = {};
 
   const query = `
@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
       join questions on questions.id = toasts.questionId
       join parts on parts.id = questions.partId
       join books on books.id = parts.bookId
-    where toasts.userId = ${req.query.userId}
+    where toasts.userId = ${req.user.id}
     order by toasts.createdAt DESC
     limit 5
   `;
