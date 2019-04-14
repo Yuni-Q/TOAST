@@ -424,6 +424,10 @@
                   "year": {
                     "type": "string",
                     "example": "2018-11-24T15:16:33.000Z"
+                  },
+                  "token": {
+                    "type": "string",
+                    "example": "aa"
                   }
                 }
               }

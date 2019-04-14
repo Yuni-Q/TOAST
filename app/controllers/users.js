@@ -36,6 +36,7 @@ router.put('/sns', isNotLoggedIn, async (req, res) => {
       response.nickName = json.properties.nickname;
       response.email = json.kakao_account.email;
       response.gender = json.kakao_account.gender;
+      response.token = req.body.accessToken;
       await users.create({
         email: response.email,
         nickName: response.nickName,
@@ -53,6 +54,7 @@ router.put('/sns', isNotLoggedIn, async (req, res) => {
       response.email = json.email;
       response.year = (json.birthday).split('/')[2];
       response.gender = json.gender;
+      response.token = req.body.accessToken;
       await users.create({
         email: response.email,
         nickName: response.nickName,
