@@ -17,8 +17,18 @@ const {
 
 
 router.get('/', isLoggedIn, async (req, res) => {
-  const read = await db.toasts.findAll({});
-  res.json(resultFormat(true, null, read));
+  const query = `
+      select
+        * 
+      from toasts 
+        left join (select count(*) as keepsCount, toastId from keeps JOIN toasts on toasts.id = keeps.toastId ) as keeps on keeps.toastId = toasts.id
+        left join (select count(*) as alertCount, toastId from alerts JOIN toasts on toasts.id = alerts.toastId ) as alerts on alerts.toastId = toasts.id
+        where toasts.userId != ${req.user.id}
+      `;
+  const result = await db.sequelize.query(query, {
+    type: sequelize.QueryTypes.SELECT,
+  });
+  res.json(resultFormat(true, null, result));
 });
 
 
