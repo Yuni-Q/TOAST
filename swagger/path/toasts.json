@@ -1,10 +1,10 @@
 {
-  "/toasts/users": {
+  "/toasts/me": {
     "get": {
       "tags": [
         "toasts"
       ],
-      "summary": "toast 목록",
+      "summary": "내 toast 목록",
       "produces": [
         "application/json"
       ],
@@ -44,7 +44,7 @@
       "tags": [
         "toasts"
       ],
-      "summary": "toast 목록",
+      "summary": "내 toast를 제외한 toast 목록",
       "produces": [
         "application/json"
       ],

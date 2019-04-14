@@ -37,13 +37,35 @@ router.put('/sns', isNotLoggedIn, async (req, res) => {
       response.email = json.kakao_account.email;
       response.gender = json.kakao_account.gender;
       response.token = req.body.accessToken;
-      await users.create({
-        email: response.email,
-        nickName: response.nickName,
-        gender: response.gender,
-        deviceToken: req.body.accessToken,
-        type: req.body.sns,
+      const user = await users.findOne({
+        where: {
+          email: response.email,
+          type: req.body.sns,
+        },
       });
+      if(user) {
+        await users.update({
+          email: response.email,
+          nickName: response.nickName,
+          gender: response.gender,
+          deviceToken: req.body.accessToken,
+          type: req.body.sns,
+          auth: 1,
+        }, {
+          where: {
+            id: req.user.id,
+          },
+        });
+      } else {
+        await users.create({
+          email: response.email,
+          nickName: response.nickName,
+          gender: response.gender,
+          deviceToken: req.body.accessToken,
+          type: req.body.sns,
+          auth: 1,
+        });
+      }
       res.json(resultFormat(true, null, response));
       return;
     } else {
@@ -55,14 +77,37 @@ router.put('/sns', isNotLoggedIn, async (req, res) => {
       response.year = (json.birthday).split('/')[2];
       response.gender = json.gender;
       response.token = req.body.accessToken;
-      await users.create({
-        email: response.email,
-        nickName: response.nickName,
-        age: response.year,
-        gender: response.gender,
-        deviceToken: req.body.accessToken,
-        type: req.body.sns,
+      const user = await users.findOne({
+        where: {
+          email: response.email,
+          type: req.body.sns,
+        },
       });
+      if(user) {
+        await users.update({
+          email: response.email,
+          nickName: response.nickName,
+          age: response.year,
+          gender: response.gender,
+          deviceToken: req.body.accessToken,
+          type: req.body.sns,
+          auth: 1,
+        }, {
+          where: {
+            id: req.user.id,
+          },
+        });
+      } else {
+        await users.create({
+          email: response.email,
+          nickName: response.nickName,
+          age: response.year,
+          gender: response.gender,
+          deviceToken: req.body.accessToken,
+          type: req.body.sns,
+          auth: 1,
+        });
+      }
       res.json(resultFormat(true, null, response));
       return;
     }
@@ -73,9 +118,9 @@ router.put('/sns', isNotLoggedIn, async (req, res) => {
   res.json(resultFormat(false, 'kakao나 facebook이 아닙니다.'));
 });
 
-router.post("/email", async (req, res, next) => {
+router.put("/email", async (req, res, next) => {
   const email = req.body.email;
-  const token = uuidv1();
+  let token = Math.floor(Math.random() * 1000000) - 1;
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -88,8 +133,7 @@ router.post("/email", async (req, res, next) => {
     // to: email , // 수신 메일 주소 
     to: email,
     subject: '안녕하세요, TOAST입니다. 이메일 인증을 해주세요.',
-    html: `<p>아래의 링크를 클릭해주세요 !</p>
-           <a href='http://13.113.246.46:8080/users/auth?email=${email}&token=${token}'>인증하기</a>`
+    html: `인증번호는 ${token}입니다.`
   };
   await users.update({
     authToken: token,
@@ -108,14 +152,14 @@ router.post("/email", async (req, res, next) => {
   res.json(resultFormat(true, null));
 })
 
-router.get("/auth", async (req, res, next) => {
-  const { email } = req.query;
+router.put("/auth", async (req, res, next) => {
+  const { email } = req.body;
   const user = await users.findOne({
     where: {
       email,
     }
   });
-  if (user && user.authToken === req.query.token) {
+  if (user && user.authToken === req.body.token) {
     await users.update({
       auth: 1,
     }, {
@@ -123,9 +167,10 @@ router.get("/auth", async (req, res, next) => {
         email,
       },
     });
-    return res.send('인증 성공');
+    res.json(resultFormat(false, '인증번호가 올바르지 않습니다 !!'));
+    return;
   }
-  res.send('인증 실패');
+  res.json(resultFormat(true, null));
 })
 
 router.get('/', isLoggedIn, async (req, res) => {

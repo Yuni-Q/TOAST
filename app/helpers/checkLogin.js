@@ -19,6 +19,10 @@ exports.isLoggedIn = async (req, res, next) => {
         token,
       }
     });
+    if(user.auth !== 1) {
+      res.json(resultFormat(false, '이메일 인증이 되지 않았습니다.', token));
+      return;
+    }
     // const user = new Promise(
     //   (resolve, reject) => {
     //     jwt.verify(token, req.app.get('jwt-secret'), (err, decoded) => {

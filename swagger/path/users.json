@@ -287,7 +287,7 @@
     }
   },
   "/users/email": {
-    "post": {
+    "put": {
       "tags": [
         "users"
       ],
@@ -430,6 +430,54 @@
                     "example": "aa"
                   }
                 }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/users/auth": {
+    "put": {
+      "tags": [
+        "users"
+      ],
+      "summary": "이메일 인증",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "example": "aa@aa.com"
+              },
+              "token": {
+                "type": "integer",
+                "example": 123456
+              }
+            }
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
               }
             }
           }

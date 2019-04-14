@@ -102,7 +102,7 @@ router.post('/', async (req, res) => {
   });
 });
 
-router.get('/users', isLoggedIn, async (req, res) => {
+router.get('/me', isLoggedIn, async (req, res) => {
   const query = `
       select
         * 

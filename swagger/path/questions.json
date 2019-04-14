@@ -163,7 +163,7 @@
       "tags": [
         "questions"
       ],
-      "summary": "질문 조회",
+      "summary": "해당 질문에 속한 토스트 목록(본인이 공유한게 있으면 다른 사람 것도 포함 / 공유한 것이 없으면 본인 것만 조회)",
       "produces": [
         "application/json"
       ],

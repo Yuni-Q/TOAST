@@ -163,7 +163,7 @@
       "tags": [
         "parts"
       ],
-      "summary": "파트 조회",
+      "summary": "해당 파트에 속한 질문 목록",
       "produces": [
         "application/json"
       ],
