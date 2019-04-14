@@ -291,7 +291,7 @@
       "tags": [
         "users"
       ],
-      "summary": "이메일 인증",
+      "summary": "이메일 인증 번호 발송",
       "produces": [
         "application/json"
       ],
@@ -442,7 +442,7 @@
       "tags": [
         "users"
       ],
-      "summary": "이메일 인증",
+      "summary": "이메일 인증 번호 검증",
       "produces": [
         "application/json"
       ],
