@@ -1,5 +1,7 @@
 const express = require('express');
 const sequelize = require('sequelize');
+const _ = require('lodash');
+
 const db = require('../models');
 const {
   isLoggedIn,
@@ -9,6 +11,85 @@ const {
 } = require('../helpers/formHelper');
 
 const router = express.Router();
+
+router.get('/me', isLoggedIn, async (req, res) => {
+  const result = {
+    me: [],
+    other: [],
+  }
+  const query1 = `
+    select
+      books.title as bookTitle,
+      parts.title as partTitle,
+      parts.id as partId,
+      questions.title as questionTitle,
+      questions.id as questionId,
+      questions.content as time,
+      toasts.title as title,
+      toasts.content as content,
+      toasts.share as share,
+      toasts.userId as userId,
+      imgUrl,
+      fileUrl
+    from toasts 
+      join questions on questions.id = toasts.questionId
+      join parts on parts.id = questions.partId
+      join books on books.id = parts.bookId
+    where toasts.userId = ${req.user.id}
+      and share = 1
+    order by toasts.updatedAt DESC
+  `;
+  const toasts = await db.sequelize.query(query1, {
+    type: sequelize.QueryTypes.SELECT,
+  });
+  let list = _.groupBy(toasts, function (item) {
+    return item.partTitle;
+  });
+  _.forEach(list, function (value, key) {
+    list[key] = _.groupBy(list[key], function (item) {
+      return item.questionTitle;
+    });
+  });
+  result.me = list;
+
+  const query2 = `
+    select
+      books.title as bookTitle,
+      parts.title as partTitle,
+      parts.id as partId,
+      questions.title as questionTitle,
+      questions.id as questionId,
+      questions.content as time,
+      toasts.title as title,
+      toasts.content as content,
+      toasts.share as share,
+      toasts.userId as userId,
+      imgUrl,
+      fileUrl
+    from keeps
+      join toasts on toasts.id = keeps.toastId
+      join questions on questions.id = toasts.questionId
+      join parts on parts.id = questions.partId
+      join books on books.id = parts.bookId
+    where keeps.userId = ${req.user.id}
+    order by keeps.updatedAt DESC
+  `;
+  const toasts2 = await db.sequelize.query(query2, {
+    type: sequelize.QueryTypes.SELECT,
+  });
+  let list2 = _.groupBy(toasts2, function (item) {
+    return item.partTitle;
+  });
+  _.forEach(list2, function (value, key) {
+    list2[key] = _.groupBy(list2[key], function (item) {
+      return item.questionTitle;
+    });
+  });
+  result.other = list2;
+
+  res.json(resultFormat(true, null, result));
+});
+
 
 router.get('/', isLoggedIn, async (req, res) => {
   const query = `
@@ -23,7 +104,6 @@ router.get('/', isLoggedIn, async (req, res) => {
   });
   res.json(resultFormat(true, null, result));
 });
-
 
 router.post('/', isLoggedIn, async (req, res) => {
   const {

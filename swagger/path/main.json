@@ -46,7 +46,7 @@
       "tags": [
         "main"
       ],
-      "summary": "메인 페이지용",
+      "summary": "보관함",
       "produces": [
         "application/json"
       ],
