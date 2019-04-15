@@ -25,6 +25,8 @@ module.exports = (Sequelize, DataTypes) => {
       admin: DataTypes.BOOLEAN,
       leave: DataTypes.BOOLEAN,
       auth: DataTypes.BOOLEAN,
+      noti: DataTypes.BOOLEAN,
+      subNoti: DataTypes.BOOLEAN,
     },
     {},
   );

@@ -35,7 +35,6 @@ module.exports = {
       type,
     });
   },
-
   updateUser: async (
     {
       id,
@@ -47,6 +46,8 @@ module.exports = {
       gender,
       deviceToken,
       type,
+      noti,
+      subNoti,
     },
   ) => {
     const password = await cryptoHelper.makePssword(pwd);
@@ -58,6 +59,8 @@ module.exports = {
       gender,
       deviceToken,
       type,
+      noti,
+      subNoti,
     }, {
       where: {
         id,
