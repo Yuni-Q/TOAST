@@ -40,5 +40,54 @@
         }
       }
     }
+  },
+  "/main/book/{id}": {
+    "get": {
+      "tags": [
+        "main"
+      ],
+      "summary": "메인 페이지용",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [{
+        "name": "Authorization",
+        "in": "header",
+        "type": "string",
+        "description": "API 인증 키",
+        "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQyLCJuaWNrTmFtZSI6bnVsbCwiZW1haWwiOiJhYUBhYS5jb20iLCJpYXQiOjE1NDY4NDk0NTYsImV4cCI6MTU0NzQ1NDI1NiwiaXNzIjoiT05FUElDIiwic3ViIjoidXNlckluZm8ifQ.XlubXtxCv3pvjjILa-WsypOxU5OiL6ph6r9-vdF6Ztc",
+        "required": true
+      },
+      {
+        "name": "id",
+        "in": "path",
+        "type": "integer",
+        "default": 1,
+        "description": "책 번호",
+        "required": true
+      }
+    ],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              },
+              "result": {
+                "type": "integer",
+                "example": 0
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

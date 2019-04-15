@@ -15,7 +15,6 @@ const {
   resultFormat,
 } = require('../helpers/formHelper');
 
-
 router.get('/', isLoggedIn, async (req, res) => {
   const read = await db.books.findAll({});
   res.json(resultFormat(true, null, read));

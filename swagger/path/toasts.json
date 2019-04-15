@@ -126,13 +126,6 @@
           "type": "integer"
         },
         {
-          "name": "userId",
-          "in": "formData",
-          "description": "file to upload",
-          "required": false,
-          "type": "integer"
-        },
-        {
           "name": "share",
           "in": "formData",
           "description": "file to upload",

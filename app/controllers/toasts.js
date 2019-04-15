@@ -32,7 +32,7 @@ router.get('/', isLoggedIn, async (req, res) => {
 });
 
 
-router.post('/', async (req, res) => {
+router.post('/',isLoggedIn, async (req, res) => {
   AWS.config.update({
     accessKeyId: global.config.AWSAccessKeyId,
     secretAccessKey: global.config.AWSSecretKey,
@@ -56,7 +56,7 @@ router.post('/', async (req, res) => {
     if (!files.file) {
       const questionId = parseInt(fields.questionId, 10);
       const share = parseInt(fields.share, 10);
-      const userId = parseInt(fields.userId, 10);
+      const userId = req.user.id
       const read = await db.toasts.create({
         title: fields.title,
         content: fields.content,
@@ -111,9 +111,10 @@ router.get('/me', isLoggedIn, async (req, res) => {
         left join (select count(*) as alertCount, toastId from alerts JOIN toasts on toasts.id = alerts.toastId ) as alerts on alerts.toastId = toasts.id
         where toasts.userId = ${req.user.id}
       `;
-  const result = await db.sequelize.query(query, {
+  const toasts = await db.sequelize.query(query, {
     type: sequelize.QueryTypes.SELECT,
   });
+
   res.json(resultFormat(true, null, result));
 });
 
