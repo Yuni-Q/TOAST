@@ -4,6 +4,7 @@ module.exports = {
   keeps: require('./keeps'),
   likes: require('./likes'),
   main: require('./main'),
+  notifications: require('./notifications'),
   parts: require('./parts'),
   questions: require('./questions'),
   signIn: require('./signIn'),
