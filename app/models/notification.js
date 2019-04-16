@@ -12,6 +12,9 @@ module.exports = (Sequelize, DataTypes) => {
       createdAt: DataTypes.DATE,
       title: DataTypes.STRING,
       content: DataTypes.STRING,
+      type: DataTypes.INTEGER,
+      to: DataTypes.INTEGER,
+      from: DataTypes.INTEGER,
     }, {},
   );
   // Users.associate = (models) => {
