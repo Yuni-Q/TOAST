@@ -76,6 +76,7 @@ router.get('/books/:id', isLoggedIn, async (req, res) => {
       join parts on parts.id = questions.partId
       join books on books.id = parts.bookId
     where toasts.userId = ${req.user.id}
+      and books.id = ${req.params.id}
     order by toasts.updatedAt DESC
   `;
   const toasts = await db.sequelize.query(query1, {
@@ -135,7 +136,6 @@ router.get('/books/:id', isLoggedIn, async (req, res) => {
     })
   })
 
-  console.log(111, result);
   // result[parts[i].title][j][questions[j].title].me = toasts;
   res.json(resultFormat(true, null, result));
 });
