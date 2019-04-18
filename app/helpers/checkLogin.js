@@ -21,6 +21,7 @@ exports.isLoggedIn = async (req, res, next) => {
     });
     if(!user) {
       res.json(resultFormat(false, '토큰이 올바르지 않습니다.', token));
+      return;
     }
     if(user.auth !== true) {
       res.json(resultFormat(false, '이메일 인증이 되지 않았습니다.', token));
