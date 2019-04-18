@@ -19,8 +19,10 @@ exports.isLoggedIn = async (req, res, next) => {
         token,
       }
     });
+    if(!user) {
+      res.json(resultFormat(false, '토큰이 올바르지 않습니다.', token));
+    }
     if(user.auth !== true) {
-      console.log(1111, user.auth);
       res.json(resultFormat(false, '이메일 인증이 되지 않았습니다.', token));
       return;
     }
@@ -35,7 +37,6 @@ exports.isLoggedIn = async (req, res, next) => {
     // // const user = await users.findOne({ where: { token } });
     // await user.then(
     //   (u) => {
-      console.log(22,user);
     req.user = user;
     //   },
     // );
