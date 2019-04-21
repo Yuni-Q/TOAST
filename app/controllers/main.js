@@ -71,7 +71,9 @@ router.get('/books/:id', isLoggedIn, async (req, res) => {
     T.userId as userId,
     B.imgUrl as imgUrl,
     T.fileUrl as fileUrl,
-    T.updatedAt as updatedAt
+    T.updatedAt as updatedAt,
+    keepsCount,
+    alertCount
   FROM books AS B
   INNER JOIN parts AS P
     ON B.id = P.bookId
@@ -80,6 +82,8 @@ router.get('/books/:id', isLoggedIn, async (req, res) => {
   INNER JOIN toasts AS T
     ON Q.id = T.questionId
       AND T.userId = ${req.user.id}
+  left join (select count(*) as keepsCount, toastId from keeps JOIN toasts on toasts.id = keeps.toastId ) as K on K.toastId = toasts.id
+  left join (select count(*) as alertCount, toastId from alerts JOIN toasts on toasts.id = alerts.toastId ) as A on A.toastId = toasts.id
   WHERE B.id = ${req.params.id}
   
     
@@ -98,7 +102,9 @@ router.get('/books/:id', isLoggedIn, async (req, res) => {
     ORI.userId as userId,
     B.imgUrl as imgUrl,
     ORI.fileUrl as fileUrl,
-    ORI.updatedAt as updatedAt
+    ORI.updatedAt as updatedAt,
+    keepsCount,
+    alertCount,
   FROM books AS B
     INNER JOIN parts AS P
       ON B.id = P.bookId
@@ -106,6 +112,8 @@ router.get('/books/:id', isLoggedIn, async (req, res) => {
       ON P.id = Q.partId
     INNER JOIN toasts AS ORI
       ON Q.id = ORI.questionId
+    left join (select count(*) as keepsCount, toastId from keeps JOIN toasts on toasts.id = keeps.toastId ) as K on K.toastId = toasts.id
+    left join (select count(*) as alertCount, toastId from alerts JOIN toasts on toasts.id = alerts.toastId ) as A on A.toastId = toasts.id
   WHERE ORI.share = 1
     AND B.id = ${req.params.id}
     AND ORI.userId != ${req.user.id}

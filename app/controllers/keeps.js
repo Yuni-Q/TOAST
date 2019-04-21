@@ -29,12 +29,17 @@ router.get('/me', isLoggedIn, async (req, res) => {
       toasts.content as content,
       toasts.share as share,
       toasts.userId as userId,
+      keepsCount,
+      alertCount,
       imgUrl,
-      fileUrl
+      fileUrl,
+      toasts.updatedAt as updatedAt
     from toasts 
       join questions on questions.id = toasts.questionId
       join parts on parts.id = questions.partId
       join books on books.id = parts.bookId
+      left join (select count(*) as keepsCount, toastId from keeps JOIN toasts on toasts.id = keeps.toastId ) as K on K.toastId = toasts.id
+      left join (select count(*) as alertCount, toastId from alerts JOIN toasts on toasts.id = alerts.toastId ) as A on A.toastId = toasts.id
     where toasts.userId = ${req.user.id}
       and share = 1
     order by toasts.updatedAt DESC
@@ -64,15 +69,20 @@ router.get('/me', isLoggedIn, async (req, res) => {
       toasts.content as content,
       toasts.share as share,
       toasts.userId as userId,
+      keepsCount,
+      alertCount,
       imgUrl,
-      fileUrl
+      fileUrl,
+      toasts.updatedAt as updatedAt
     from keeps
       join toasts on toasts.id = keeps.toastId
       join questions on questions.id = toasts.questionId
       join parts on parts.id = questions.partId
       join books on books.id = parts.bookId
+      left join (select count(*) as keepsCount, toastId from keeps JOIN toasts on toasts.id = keeps.toastId ) as K on K.toastId = toasts.id
+      left join (select count(*) as alertCount, toastId from alerts JOIN toasts on toasts.id = alerts.toastId ) as A on A.toastId = toasts.id
     where keeps.userId = ${req.user.id}
-    order by keeps.updatedAt DESC
+    order by toasts.updatedAt DESC
   `;
   const toasts2 = await db.sequelize.query(query2, {
     type: sequelize.QueryTypes.SELECT,
