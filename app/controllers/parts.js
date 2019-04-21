@@ -116,7 +116,7 @@ router.put('/:id', isLoggedIn, async (req, res) => {
           id: req.params.id,
         },
       });
-      res.json(resultFormat(true, null, read));
+      res.json(resultFormat(true, null));
       return;
     }
 
@@ -148,7 +148,7 @@ router.put('/:id', isLoggedIn, async (req, res) => {
         id: req.params.id,
       },
     });
-    res.json(resultFormat(true, null, read));
+    res.json(resultFormat(true, null));
     // unlink tmp files
     fs.unlinkSync(image.path);
   });
@@ -164,13 +164,17 @@ router.delete('/:id', isLoggedIn, async (req, res) => {
       id,
     },
   });
-  res.json(resultFormat(true, null, result));
+  res.json(resultFormat(true, null));
 });
 
 router.get('/:id', isLoggedIn, async (req, res) => {
   const query = `
     select
-      * 
+      questions.id as id,
+      questions.createdAt as createdAt,
+      questions.updatedAt as updatedAt,
+      questions.title as title,
+      questions.content as content
     from parts 
       join questions on parts.id = questions.partId
       where parts.id = ${req.params.id};
