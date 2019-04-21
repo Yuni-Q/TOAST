@@ -111,7 +111,7 @@ router.get('/me', isLoggedIn, async (req, res) => {
         left join (select count(*) as alertCount, toastId from alerts JOIN toasts on toasts.id = alerts.toastId ) as alerts on alerts.toastId = toasts.id
         where toasts.userId = ${req.user.id}
       `;
-  const toasts = await db.sequelize.query(query, {
+  const result = await db.sequelize.query(query, {
     type: sequelize.QueryTypes.SELECT,
   });
 
@@ -138,7 +138,7 @@ router.put('/:id', isLoggedIn, async (req, res) => {
   for (let i = 0; i < 8; i += 1) fileName += possible.charAt(Math.floor(Math.random() * possible.length));
 
   // 서버에 업로드 완료 후
-  form.parse(req, isLoggedIn, async (err, fields, files) => {
+  form.parse(req, async (err, fields, files) => {
     if (!files.file) {
       const share = parseInt(fields.share, 10);
       const read = await db.toasts.update({
@@ -150,7 +150,7 @@ router.put('/:id', isLoggedIn, async (req, res) => {
           id: req.params.id,
         },
       });
-      res.json(resultFormat(true, null, read));
+      res.json(resultFormat(true, null));
       return;
     }
 
@@ -184,7 +184,7 @@ router.put('/:id', isLoggedIn, async (req, res) => {
         id: req.params.id,
       },
     });
-    res.json(resultFormat(true, null, read));
+    res.json(resultFormat(true, null));
     // unlink tmp files
     fs.unlinkSync(file.path);
   });
@@ -197,12 +197,12 @@ router.delete('/:id', isLoggedIn, async (req, res) => {
   } = req.params;
   // await db.deletetoasts.create({
   // });
-  const result = await db.toasts.destroy({
+  await db.toasts.destroy({
     where: {
       id,
     },
   });
-  res.json(resultFormat(true, null, result));
+  res.json(resultFormat(true, null));
 });
 
 router.get('/:id', isLoggedIn, async (req, res) => {
