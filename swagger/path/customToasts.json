@@ -4,7 +4,7 @@
       "tags": [
         "customToasts"
       ],
-      "summary": "내 toast를 제외한 toast 목록",
+      "summary": "내 custom toast 목록",
       "produces": [
         "application/json"
       ],
@@ -42,7 +42,7 @@
       "tags": [
         "customToasts"
       ],
-      "summary": "toast 만들기",
+      "summary": "custom toast 만들기",
       "consumes": [
         "multipart/form-data"
       ],
@@ -117,7 +117,7 @@
       "tags": [
         "customToasts"
       ],
-      "summary": "toast 조회",
+      "summary": "custom toast 조회",
       "produces": [
         "application/json"
       ],
@@ -172,7 +172,7 @@
       "tags": [
         "customToasts"
       ],
-      "summary": "toast 수정하기",
+      "summary": "custom toast 수정하기",
       "consumes": [
         "multipart/form-data"
       ],
@@ -246,7 +246,7 @@
       "tags": [
         "customToasts"
       ],
-      "summary": "toast 지우기",
+      "summary": "custom toast 지우기",
       "produces": [
         "application/json"
       ],

@@ -21,7 +21,7 @@ router.get('/', isLoggedIn, async (req, res) => {
       createdAt,
       updatedAt 
     from customToasts
-      where customToasts.userId != ${req.user.id}
+      where customToasts.userId = ${req.user.id}
   `;
   const result = await db.sequelize.query(query, {
     type: sequelize.QueryTypes.SELECT,
