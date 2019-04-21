@@ -175,21 +175,21 @@ router.get('/:id', isLoggedIn, async (req, res) => {
       userId: req.user.id,
     },
   });
-  if (parseInt(req.params.id, 10) === 0) {
-    const query = `
-      select
-        * 
-      from questions 
-        join toasts on questions.id = toasts.questionId
-        left join (select count(*) as keepsCount, toastId from keeps JOIN toasts on toasts.id = keeps.toastId ) as keeps on keeps.toastId = toasts.id
-        left join (select count(*) as alertCount, toastId from alerts JOIN toasts on toasts.id = alerts.toastId ) as alerts on alerts.toastId = toasts.id
-        where questions.id = ${req.params.id};
-      `;
-    const result = await db.sequelize.query(query, {
-      type: sequelize.QueryTypes.SELECT,
-    });
-    res.json(resultFormat(true, null, result));
-  }
+  // if (parseInt(req.params.id, 10) === 0) {
+  //   const query = `
+  //     select
+  //       * 
+  //     from questions 
+  //       join toasts on questions.id = toasts.questionId
+  //       left join (select count(*) as keepsCount, toastId from keeps JOIN toasts on toasts.id = keeps.toastId ) as keeps on keeps.toastId = toasts.id
+  //       left join (select count(*) as alertCount, toastId from alerts JOIN toasts on toasts.id = alerts.toastId ) as alerts on alerts.toastId = toasts.id
+  //       where questions.id = ${req.params.id};
+  //     `;
+  //   const result = await db.sequelize.query(query, {
+  //     type: sequelize.QueryTypes.SELECT,
+  //   });
+  //   res.json(resultFormat(true, null, result));
+  // }
 
   if (share) {
     const query = `
