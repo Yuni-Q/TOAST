@@ -13,7 +13,7 @@ router.get('/', isLoggedIn, async (req, res) => {
 });
 
 
-router.post('/', isLoggedIn, async (req, res) => {
+router.put('/', isLoggedIn, async (req, res) => {
   const { id: userId } = req.user;
   const { toastId } = req.body;
   const like = await db.likes.findOne({
@@ -24,58 +24,19 @@ router.post('/', isLoggedIn, async (req, res) => {
   });
   let result;
   if(like) {
-    result = await db.likes.destroy({
+    await db.likes.destroy({
       where: {
         userId,
         toastId,
       },
     })
+    result = 0;
   } else {
-    const query = `
-      select * from toasts
-      join users
-        on users.id = toasts.userId
-      where toasts.id =${toastId};
-    `;
-    const toast = await db.sequelize.query(query, {
-      type: sequelize.QueryTypes.SELECT,
-    });
     await db.likes.create({
       userId,
       toastId,
     });
-    // const user = await db.users.findOne({
-    //   where: {
-    //     id: userId,
-    //   },
-    // });
-    // if(user.subNoti) {
-    //   // This registration token comes from the client FCM SDKs.
-    //   var message = {
-    //     notification: {
-    //       title: '$GOOG up 1.43% on the day',
-    //       body: '$GOOG gained 11.80 points to close at 835.67, up 1.43% on the day.'
-    //     },
-    //     token: toast.deviceToken,
-    //   };
-
-    //   // Send a message to the device corresponding to the provided
-    //   // registration token.
-    //   admin.messaging().send(message)
-    //     .then((response) => {
-    //       // Response is a message ID string.
-    //       console.log('Successfully sent message:', response);
-    //     })
-    //     .catch((error) => {
-    //       console.log('Error sending message:', error);
-    //       res.json(resultFormat(false, '메세지가 올바로 전송 되지 않았습니다', {
-    //         token: toast.deviceToken,
-    //         toastId,
-    //         userId,
-    //       }));
-    //       return;
-    //     });
-    // }
+    result = 1;
   }
   res.json(resultFormat(true, null, result));
 });
