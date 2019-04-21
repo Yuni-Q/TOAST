@@ -83,7 +83,7 @@ router.put('/:id', isLoggedIn, async (req, res) => {
       },
     },
   );
-  res.json(resultFormat(true, null, result));
+  res.json(resultFormat(true, null));
 });
 
 // 게시글 id에 해당하는 글 지우기 -> deletealerts에 넣기
@@ -98,7 +98,7 @@ router.delete('/:id', isLoggedIn, async (req, res) => {
       id,
     },
   });
-  res.json(resultFormat(true, null, result));
+  res.json(resultFormat(true, null));
 });
 
 router.get('/:id', isLoggedIn, async (req, res) => {

@@ -34,7 +34,7 @@
               },
               "toastId": {
                 "type": "integer",
-                "example": 1
+                "example": 4
               }
             }
           }
@@ -52,6 +52,40 @@
               "error": {
                 "type": "string",
                 "example": null
+              },
+              "result": {
+                "type": "object",
+                "description": "책 정보",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": 28
+                  },
+                  "createdAt": {
+                    "type": "string",
+                    "example": "2018-11-24T15:16:33.000Z"
+                  },
+                  "updatedAt": {
+                    "type": "string",
+                    "example": "2018-11-24T15:34:34.000Z"
+                  },
+                  "title": {
+                    "type": "string",
+                    "example": "aa"
+                  },
+                  "content": {
+                    "type": "string",
+                    "example": "aaa"
+                  },
+                  "toastId": {
+                    "type": "integer",
+                    "example": 4
+                  },
+                  "userId": {
+                    "type": "integer",
+                    "example": 3
+                  }
+                }
               }
             }
           }
@@ -93,23 +127,11 @@
                 "type": "array",
                 "items": {
                   "type": "object",
-                  "description": "유저 리스트",
+                  "description": "책 정보",
                   "properties": {
                     "id": {
                       "type": "integer",
-                      "example": 12
-                    },
-                    "nickName": {
-                      "type": "string",
-                      "example": "aa"
-                    },
-                    "token": {
-                      "type": "string",
-                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsIm5pY2tOYW1lIjpudWxsLCJlbWFpbCI6ImFhQGFhLmNvbSIsImlhdCI6MTU0MzA3MzU4NCwiZXhwIjoxNTQzNjc4Mzg0LCJpc3MiOiJPTkVQSUMiLCJzdWIiOiJ1c2VySW5mbyJ9.8lKBePdYO7Wv3bkAyAUUGfxbZwzZk7JNvuMx351Kfpg"
-                    },
-                    "password": {
-                      "type": "string",
-                      "example": "aa"
+                      "example": 28
                     },
                     "createdAt": {
                       "type": "string",
@@ -118,6 +140,22 @@
                     "updatedAt": {
                       "type": "string",
                       "example": "2018-11-24T15:34:34.000Z"
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "aa"
+                    },
+                    "content": {
+                      "type": "string",
+                      "example": "aaa"
+                    },
+                    "toastId": {
+                      "type": "integer",
+                      "example": 4
+                    },
+                    "userId": {
+                      "type": "integer",
+                      "example": 3
                     }
                   }
                 }
@@ -150,7 +188,7 @@
           "name": "id",
           "in": "path",
           "type": "integer",
-          "default": 1,
+          "default": 3,
           "description": "toast 번호",
           "required": true
         }
@@ -169,26 +207,12 @@
                 "example": null
               },
               "result": {
-                "type": "array",
-                "items": {
                   "type": "object",
-                  "description": "유저 리스트",
+                  "description": "책 정보",
                   "properties": {
                     "id": {
                       "type": "integer",
-                      "example": 12
-                    },
-                    "nickName": {
-                      "type": "string",
-                      "example": "aa"
-                    },
-                    "token": {
-                      "type": "string",
-                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsIm5pY2tOYW1lIjpudWxsLCJlbWFpbCI6ImFhQGFhLmNvbSIsImlhdCI6MTU0MzA3MzU4NCwiZXhwIjoxNTQzNjc4Mzg0LCJpc3MiOiJPTkVQSUMiLCJzdWIiOiJ1c2VySW5mbyJ9.8lKBePdYO7Wv3bkAyAUUGfxbZwzZk7JNvuMx351Kfpg"
-                    },
-                    "password": {
-                      "type": "string",
-                      "example": "aa"
+                      "example": 28
                     },
                     "createdAt": {
                       "type": "string",
@@ -197,11 +221,26 @@
                     "updatedAt": {
                       "type": "string",
                       "example": "2018-11-24T15:34:34.000Z"
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "aa"
+                    },
+                    "content": {
+                      "type": "string",
+                      "example": "aaa"
+                    },
+                    "toastId": {
+                      "type": "integer",
+                      "example": 4
+                    },
+                    "userId": {
+                      "type": "integer",
+                      "example": 3
                     }
                   }
                 }
               }
-            }
           }
         }
       }
@@ -224,7 +263,7 @@
           "in": "path",
           "type": "integer",
           "default": 3,
-          "description": "toast 번호",
+          "description": "alerts 번호",
           "required": true
         }
       ],
