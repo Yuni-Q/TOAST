@@ -1,8 +1,9 @@
 const { paths } = require('./path/base');
 const alerts = require('./path/alerts');
+const books = require('./path/books');
+const customToasts = require('./path/customToasts');
 const users = require('./path/users');
 const signIn = require('./path/signIn');
-const books = require('./path/books');
 const likes = require('./path/likes');
 const keeps = require('./path/keeps');
 const parts = require('./path/parts');
@@ -55,6 +56,10 @@ Object.keys(main).forEach((key) => {
 
 Object.keys(notifications).forEach((key) => {
   paths[key] = notifications[key];
+});
+
+Object.keys(customToasts).forEach((key) => {
+  paths[key] = customToasts[key];
 });
 
 module.exports = {

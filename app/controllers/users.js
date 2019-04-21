@@ -15,6 +15,7 @@ const {
   users,
 } = require('../models');
 
+
 const router = express.Router();
 
 router.put('/sns', isNotLoggedIn, async (req, res) => {
@@ -149,7 +150,7 @@ router.put("/email", async (req, res, next) => {
       console.log('Email sent: ' + info.response);
     }
   });
-  res.json(resultFormat(true, null));
+  res.json(resultFormat(true, null, token));
 })
 
 router.put("/auth", async (req, res, next) => {
@@ -159,7 +160,7 @@ router.put("/auth", async (req, res, next) => {
       email,
     }
   });
-  if (user && user.authToken === req.body.token) {
+  if (user && user.authToken === parseInt(req.body.token), 10) {
     await users.update({
       auth: 1,
     }, {
@@ -167,10 +168,11 @@ router.put("/auth", async (req, res, next) => {
         email,
       },
     });
-    res.json(resultFormat(false, '인증번호가 올바르지 않습니다 !!'));
+    res.json(resultFormat(true, null));
     return;
   }
-  res.json(resultFormat(true, null));
+  res.json(resultFormat(false, '인증번호가 올바르지 않습니다 !!'));
+  
 })
 
 router.get('/', isLoggedIn, async (req, res) => {
@@ -209,7 +211,7 @@ router.put('/', isLoggedIn, async (req, res) => {
 
 router.delete('/', isLoggedIn, async (req, res) => {
   try {
-    await usersServices.deleteUser(req.user);
+    await users.update({leave: true}, { where: {id: req.user.id}});
   } catch (error) {
     res.json(resultFormat(false, error.message));
     return;

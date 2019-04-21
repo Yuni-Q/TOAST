@@ -13,7 +13,7 @@
         "in": "header",
         "type": "string",
         "description": "API 인증 키",
-        "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Nywibmlja05hbWUiOm51bGwsImVtYWlsIjoiYWFAYWEuY29tIiwiaWF0IjoxNTQzMDY5NTczLCJleHAiOjE1NDM2NzQzNzMsImlzcyI6Ik9ORVBJQyIsInN1YiI6InVzZXJJbmZvIn0.yOCYZq4pEH0wVJciToRkl8W8kcRwufMXW2sUEI8dCks",
+        "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywibmlja05hbWUiOiJ5dW5pIiwiZW1haWwiOiJ5dW5pLmxlZUBtZW1lYm94LmNvbSIsImlhdCI6MTU1NDAxNjcyNCwiZXhwIjoxNTU0NjIxNTI0LCJpc3MiOiJUT0FTVCIsInN1YiI6InVzZXJJbmZvIn0.uCzt_eqGfX8F9fsB6cqloRlbVEqRqrC45FLECZQnDDo",
         "required": true
       }],
       "responses": {
@@ -54,7 +54,7 @@
           "in": "header",
           "type": "string",
           "description": "API 인증 키",
-          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQyLCJuaWNrTmFtZSI6bnVsbCwiZW1haWwiOiJhYUBhYS5jb20iLCJpYXQiOjE1NDY4NDk0NTYsImV4cCI6MTU0NzQ1NDI1NiwiaXNzIjoiT05FUElDIiwic3ViIjoidXNlckluZm8ifQ.XlubXtxCv3pvjjILa-WsypOxU5OiL6ph6r9-vdF6Ztc",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywibmlja05hbWUiOiJ5dW5pIiwiZW1haWwiOiJ5dW5pLmxlZUBtZW1lYm94LmNvbSIsImlhdCI6MTU1NDAxNjcyNCwiZXhwIjoxNTU0NjIxNTI0LCJpc3MiOiJUT0FTVCIsInN1YiI6InVzZXJJbmZvIn0.uCzt_eqGfX8F9fsB6cqloRlbVEqRqrC45FLECZQnDDo",
           "required": true
         },
         {
@@ -165,7 +165,7 @@
           "in": "header",
           "type": "string",
           "description": "API 인증 키",
-          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQyLCJuaWNrTmFtZSI6bnVsbCwiZW1haWwiOiJhYUBhYS5jb20iLCJpYXQiOjE1NDY4NDk0NTYsImV4cCI6MTU0NzQ1NDI1NiwiaXNzIjoiT05FUElDIiwic3ViIjoidXNlckluZm8ifQ.XlubXtxCv3pvjjILa-WsypOxU5OiL6ph6r9-vdF6Ztc",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywibmlja05hbWUiOiJ5dW5pIiwiZW1haWwiOiJ5dW5pLmxlZUBtZW1lYm94LmNvbSIsImlhdCI6MTU1NDAxNjcyNCwiZXhwIjoxNTU0NjIxNTI0LCJpc3MiOiJUT0FTVCIsInN1YiI6InVzZXJJbmZvIn0.uCzt_eqGfX8F9fsB6cqloRlbVEqRqrC45FLECZQnDDo",
           "required": true
         },
         {
@@ -273,7 +273,7 @@
           "in": "header",
           "type": "string",
           "description": "API 인증 키",
-          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQyLCJuaWNrTmFtZSI6bnVsbCwiZW1haWwiOiJhYUBhYS5jb20iLCJpYXQiOjE1NDY4NDk0NTYsImV4cCI6MTU0NzQ1NDI1NiwiaXNzIjoiT05FUElDIiwic3ViIjoidXNlckluZm8ifQ.XlubXtxCv3pvjjILa-WsypOxU5OiL6ph6r9-vdF6Ztc",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywibmlja05hbWUiOiJ5dW5pIiwiZW1haWwiOiJ5dW5pLmxlZUBtZW1lYm94LmNvbSIsImlhdCI6MTU1NDAxNjcyNCwiZXhwIjoxNTU0NjIxNTI0LCJpc3MiOiJUT0FTVCIsInN1YiI6InVzZXJJbmZvIn0.uCzt_eqGfX8F9fsB6cqloRlbVEqRqrC45FLECZQnDDo",
           "required": true
         },
         {
@@ -390,7 +390,7 @@
           "in": "header",
           "type": "string",
           "description": "API 인증 키",
-          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQyLCJuaWNrTmFtZSI6bnVsbCwiZW1haWwiOiJhYUBhYS5jb20iLCJpYXQiOjE1NDY4NDk0NTYsImV4cCI6MTU0NzQ1NDI1NiwiaXNzIjoiT05FUElDIiwic3ViIjoidXNlckluZm8ifQ.XlubXtxCv3pvjjILa-WsypOxU5OiL6ph6r9-vdF6Ztc",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywibmlja05hbWUiOiJ5dW5pIiwiZW1haWwiOiJ5dW5pLmxlZUBtZW1lYm94LmNvbSIsImlhdCI6MTU1NDAxNjcyNCwiZXhwIjoxNTU0NjIxNTI0LCJpc3MiOiJUT0FTVCIsInN1YiI6InVzZXJJbmZvIn0.uCzt_eqGfX8F9fsB6cqloRlbVEqRqrC45FLECZQnDDo",
           "required": true
         },
         {

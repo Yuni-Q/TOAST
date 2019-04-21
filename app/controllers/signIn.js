@@ -38,6 +38,7 @@ router.post('/', isNotLoggedIn, async (req, res) => {
     return;
   }
   const password = await cryptoHelper.makePssword(pwd);
+  console.log(user.password, password);
   if (user.password === password) {
     const t = new Promise((resolve, reject) => {
       jwt.sign(
@@ -74,7 +75,7 @@ router.post('/', isNotLoggedIn, async (req, res) => {
     });
     return;
   }
-  res.json(resultFormat(false, '이미 존재하는 이메일 입니다'));
+  res.json(resultFormat(false, '비밀번호가 일치하지 않습니다'));
 });
 
 router.delete('/', isLoggedIn, async (req, res) => {
