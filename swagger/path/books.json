@@ -8,14 +8,16 @@
       "produces": [
         "application/json"
       ],
-      "parameters": [{
-        "name": "Authorization",
-        "in": "header",
-        "type": "string",
-        "description": "API 인증 키",
-        "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywibmlja05hbWUiOiJ5dW5pIiwiZW1haWwiOiJ5dW5pLmxlZUBtZW1lYm94LmNvbSIsImlhdCI6MTU1NDAxNjcyNCwiZXhwIjoxNTU0NjIxNTI0LCJpc3MiOiJUT0FTVCIsInN1YiI6InVzZXJJbmZvIn0.uCzt_eqGfX8F9fsB6cqloRlbVEqRqrC45FLECZQnDDo",
-        "required": true
-      }],
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "type": "string",
+          "description": "API 인증 키",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywibmlja05hbWUiOiJ5dW5pIiwiZW1haWwiOiJ5dW5pLmxlZUBtZW1lYm94LmNvbSIsImlhdCI6MTU1NDAxNjcyNCwiZXhwIjoxNTU0NjIxNTI0LCJpc3MiOiJUT0FTVCIsInN1YiI6InVzZXJJbmZvIn0.uCzt_eqGfX8F9fsB6cqloRlbVEqRqrC45FLECZQnDDo",
+          "required": true
+        }
+      ],
       "responses": {
         "200": {
           "schema": {
@@ -30,8 +32,37 @@
                 "example": null
               },
               "result": {
-                "type": "integer",
-                "example": 0
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "description": "유저 리스트",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2019-01-23T13:22:50.000Z"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2019-03-23T13:32:13.000Z"
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "2주 만에 끝나는 해커스 토익스피킹 Start"
+                    },
+                    "content": {
+                      "type": "string",
+                      "example": null
+                    },
+                    "imgUrl": {
+                      "type": "string",
+                      "example": "https://yunhee.s3.amazonaws.com/jxKdsDdw.png"
+                    }
+                  }
+                }
               }
             }
           }
@@ -49,7 +80,8 @@
       "produces": [
         "application/json"
       ],
-      "parameters": [{
+      "parameters": [
+        {
           "name": "Authorization",
           "in": "header",
           "type": "string",
@@ -93,55 +125,32 @@
                 "example": null
               },
               "result": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "description": "글 리스트",
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "example": 28
-                    },
-                    "userId": {
-                      "type": "integer",
-                      "example": 139
-                    },
-                    "createdAt": {
-                      "type": "string",
-                      "example": "2018-11-24T15:16:33.000Z"
-                    },
-                    "updatedAt": {
-                      "type": "string",
-                      "example": "2018-11-24T15:34:34.000Z"
-                    },
-                    "date": {
-                      "type": "string",
-                      "example": "2018-11-24"
-                    },
-                    "content": {
-                      "type": "string",
-                      "example": "aaa"
-                    },
-                    "location": {
-                      "type": "string",
-                      "example": "seoul"
-                    },
-                    "lon": {
-                      "type": "float",
-                      "example": 111.111
-                    },
-                    "lat": {
-                      "type": "float",
-                      "example": 111.111
-                    },
-                    "share": {
-                      "type": "integer",
-                      "example": null
-                    },
-                    "imgUrl": {
-                      "type": "string",
-                      "example": "https://yunhee.s3.amazonaws.com/yzORnu5p.png"
-                    }
+                "type": "object",
+                "description": "책 정보",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": 28
+                  },
+                  "createdAt": {
+                    "type": "string",
+                    "example": "2018-11-24T15:16:33.000Z"
+                  },
+                  "updatedAt": {
+                    "type": "string",
+                    "example": "2018-11-24T15:34:34.000Z"
+                  },
+                  "title": {
+                    "type": "string",
+                    "example": "aa"
+                  },
+                  "content": {
+                    "type": "string",
+                    "example": "aaa"
+                  },
+                  "imgUrl": {
+                    "type": "string",
+                    "example": "https://yunhee.s3.amazonaws.com/yzORnu5p.png"
                   }
                 }
               }
@@ -160,7 +169,8 @@
       "produces": [
         "application/json"
       ],
-      "parameters": [{
+      "parameters": [
+        {
           "name": "Authorization",
           "in": "header",
           "type": "string",
@@ -172,7 +182,7 @@
           "name": "id",
           "in": "path",
           "type": "integer",
-          "default": 2,
+          "default": 1,
           "description": "책 번호",
           "required": true
         }
@@ -191,64 +201,31 @@
                 "example": null
               },
               "result": {
-                "type": "object",
-                "description": "글 리스트",
-                "properties": {
-                  "id": {
-                    "type": "integer",
-                    "example": 28
-                  },
-                  "userId": {
-                    "type": "integer",
-                    "example": 139
-                  },
-                  "boardId": {
-                    "type": "integer",
-                    "example": 28
-                  },
-                  "createdAt": {
-                    "type": "string",
-                    "example": "2018-11-24T15:16:33.000Z"
-                  },
-                  "updatedAt": {
-                    "type": "string",
-                    "example": "2018-11-24T15:34:34.000Z"
-                  },
-                  "date": {
-                    "type": "string",
-                    "example": "2018-11-24"
-                  },
-                  "content": {
-                    "type": "string",
-                    "example": "aaa"
-                  },
-                  "location": {
-                    "type": "string",
-                    "example": "seoul"
-                  },
-                  "lon": {
-                    "type": "float",
-                    "example": 111.111
-                  },
-                  "lat": {
-                    "type": "float",
-                    "example": 111.111
-                  },
-                  "share": {
-                    "type": "integer",
-                    "example": null
-                  },
-                  "imgUrl": {
-                    "type": "string",
-                    "example": "https://yunhee.s3.amazonaws.com/yzORnu5p.png"
-                  },
-                  "ninePick": {
-                    "type": "integer",
-                    "example": 0
-                  },
-                  "likeCounts": {
-                    "type": "integer",
-                    "example": 1
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "description": "책 정보",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 28
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2018-11-24T15:16:33.000Z"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2018-11-24T15:34:34.000Z"
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "aa"
+                    },
+                    "content": {
+                      "type": "string",
+                      "example": "aaa"
+                    }
                   }
                 }
               }
@@ -268,7 +245,8 @@
       "produces": [
         "application/json"
       ],
-      "parameters": [{
+      "parameters": [
+        {
           "name": "Authorization",
           "in": "header",
           "type": "string",
@@ -318,59 +296,6 @@
               "error": {
                 "type": "string",
                 "example": null
-              },
-              "result": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "description": "글 리스트",
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "example": 28
-                    },
-                    "userId": {
-                      "type": "integer",
-                      "example": 139
-                    },
-                    "createdAt": {
-                      "type": "string",
-                      "example": "2018-11-24T15:16:33.000Z"
-                    },
-                    "updatedAt": {
-                      "type": "string",
-                      "example": "2018-11-24T15:34:34.000Z"
-                    },
-                    "date": {
-                      "type": "string",
-                      "example": "2018-11-24"
-                    },
-                    "content": {
-                      "type": "string",
-                      "example": "aaa"
-                    },
-                    "location": {
-                      "type": "string",
-                      "example": "seoul"
-                    },
-                    "lon": {
-                      "type": "float",
-                      "example": 111.111
-                    },
-                    "lat": {
-                      "type": "float",
-                      "example": 111.111
-                    },
-                    "share": {
-                      "type": "integer",
-                      "example": null
-                    },
-                    "imgUrl": {
-                      "type": "string",
-                      "example": "https://yunhee.s3.amazonaws.com/yzORnu5p.png"
-                    }
-                  }
-                }
               }
             }
           }
@@ -385,7 +310,8 @@
       "produces": [
         "application/json"
       ],
-      "parameters": [{
+      "parameters": [
+        {
           "name": "Authorization",
           "in": "header",
           "type": "string",
@@ -414,59 +340,6 @@
               "error": {
                 "type": "string",
                 "example": null
-              },
-              "result": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "description": "글 리스트",
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "example": 28
-                    },
-                    "userId": {
-                      "type": "integer",
-                      "example": 139
-                    },
-                    "createdAt": {
-                      "type": "string",
-                      "example": "2018-11-24T15:16:33.000Z"
-                    },
-                    "updatedAt": {
-                      "type": "string",
-                      "example": "2018-11-24T15:34:34.000Z"
-                    },
-                    "date": {
-                      "type": "string",
-                      "example": "2018-11-24"
-                    },
-                    "content": {
-                      "type": "string",
-                      "example": "aaa"
-                    },
-                    "location": {
-                      "type": "string",
-                      "example": "seoul"
-                    },
-                    "lon": {
-                      "type": "float",
-                      "example": 111.111
-                    },
-                    "lat": {
-                      "type": "float",
-                      "example": 111.111
-                    },
-                    "share": {
-                      "type": "integer",
-                      "example": null
-                    },
-                    "imgUrl": {
-                      "type": "string",
-                      "example": "https://yunhee.s3.amazonaws.com/yzORnu5p.png"
-                    }
-                  }
-                }
               }
             }
           }

@@ -111,7 +111,7 @@ router.put('/:id', isLoggedIn, async (req, res) => {
           id: req.params.id,
         },
       });
-      res.json(resultFormat(true, null, read));
+      res.json(resultFormat(true, null));
       return;
     }
 
@@ -143,7 +143,7 @@ router.put('/:id', isLoggedIn, async (req, res) => {
         id: req.params.id,
       },
     });
-    res.json(resultFormat(true, null, read));
+    res.json(resultFormat(true, null));
     // unlink tmp files
     fs.unlinkSync(image.path);
   });
@@ -156,18 +156,22 @@ router.delete('/:id', isLoggedIn, async (req, res) => {
   } = req.params;
   // await db.deletebooks.create({
   // });
-  const result = await db.books.destroy({
+  await db.books.destroy({
     where: {
       id,
     },
   });
-  res.json(resultFormat(true, null, result));
+  res.json(resultFormat(true, null));
 });
 
 router.get('/:id', isLoggedIn, async (req, res) => {
   const query = `
     select
-      * 
+      parts.id as id,
+      parts.createdAt as createdAt,
+      parts.updatedAt as updatedAt,
+      parts.title as title,
+      parts.content as content
     from books 
       join parts on books.id = parts.bookId
       where books.id = ${req.params.id};
