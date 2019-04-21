@@ -112,7 +112,7 @@ router.put('/:id', isLoggedIn, async (req, res) => {
   for (let i = 0; i < 8; i += 1) fileName += possible.charAt(Math.floor(Math.random() * possible.length));
 
   // 서버에 업로드 완료 후
-  form.parse(req, isLoggedIn, async (err, fields, files) => {
+  form.parse(req, async (err, fields, files) => {
     if (!files.file) {
       const read = await db.customToasts.update({
         title: fields.title,
@@ -122,7 +122,7 @@ router.put('/:id', isLoggedIn, async (req, res) => {
           id: req.params.id,
         },
       });
-      res.json(resultFormat(true, null, read));
+      res.json(resultFormat(true, null));
       return;
     }
 
@@ -154,7 +154,7 @@ router.put('/:id', isLoggedIn, async (req, res) => {
         id: req.params.id,
       },
     });
-    res.json(resultFormat(true, null, read));
+    res.json(resultFormat(true, null));
     // unlink tmp files
     fs.unlinkSync(file.path);
   });
@@ -167,12 +167,12 @@ router.delete('/:id', isLoggedIn, async (req, res) => {
   } = req.params;
   // await db.deletetoasts.create({
   // });
-  const result = await db.customToasts.destroy({
+  await db.customToasts.destroy({
     where: {
       id,
     },
   });
-  res.json(resultFormat(true, null, result));
+  res.json(resultFormat(true, null));
 });
 
 router.get('/:id', isLoggedIn, async (req, res) => {
