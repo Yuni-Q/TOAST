@@ -55,7 +55,7 @@ router.put('/sns', isNotLoggedIn, async (req, res) => {
           auth: 1,
         }, {
           where: {
-            id: req.user.id,
+            id: user.id,
           },
         });
       } else {
@@ -69,7 +69,13 @@ router.put('/sns', isNotLoggedIn, async (req, res) => {
           auth: 1,
         });
       }
-      res.json(resultFormat(true, null, response));
+      const result = await users.findOne({
+        where: {
+          email: response.email,
+          type: req.body.sns,
+        },
+      });
+      res.json(resultFormat(true, null, result));
       return;
     } else {
       const facebookResponse = await request('GET', `https://graph.facebook.com/me?access_token=${req.body.accessToken}&fields=id,name,gender,birthday,email`);
@@ -98,7 +104,7 @@ router.put('/sns', isNotLoggedIn, async (req, res) => {
           auth: 1,
         }, {
           where: {
-            id: req.user.id,
+            id: user.id,
           },
         });
       } else {
@@ -113,7 +119,13 @@ router.put('/sns', isNotLoggedIn, async (req, res) => {
           auth: 1,
         });
       }
-      res.json(resultFormat(true, null, response));
+      const result = await users.findOne({
+        where: {
+          email: response.email,
+          type: req.body.sns,
+        },
+      });
+      res.json(resultFormat(true, null, result));
       return;
     }
   } catch (error) {
