@@ -49,8 +49,9 @@ router.put('/sns', isNotLoggedIn, async (req, res) => {
           email: response.email,
           nickName: response.nickName,
           gender: response.gender,
-          deviceToken: req.body.accessToken,
-          type: req.body.sns,
+          deviceToken: req.body.deviceToken,
+          type : req.body.sns,
+          token: req.body.accessToken,
           auth: 1,
         }, {
           where: {
@@ -62,7 +63,8 @@ router.put('/sns', isNotLoggedIn, async (req, res) => {
           email: response.email,
           nickName: response.nickName,
           gender: response.gender,
-          deviceToken: req.body.accessToken,
+          deviceToken: req.body.deviceToken,
+          token: req.body.accessToken,
           type: req.body.sns,
           auth: 1,
         });
@@ -90,7 +92,8 @@ router.put('/sns', isNotLoggedIn, async (req, res) => {
           nickName: response.nickName,
           age: response.year,
           gender: response.gender,
-          deviceToken: req.body.accessToken,
+          deviceToken: req.body.deviceToken,
+          token: req.body.accessToken,
           type: req.body.sns,
           auth: 1,
         }, {
@@ -104,8 +107,9 @@ router.put('/sns', isNotLoggedIn, async (req, res) => {
           nickName: response.nickName,
           age: response.year,
           gender: response.gender,
-          deviceToken: req.body.accessToken,
+          deviceToken: req.body.deviceToken,
           type: req.body.sns,
+          token: req.body.accessToken,
           auth: 1,
         });
       }
