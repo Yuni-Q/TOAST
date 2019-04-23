@@ -435,6 +435,7 @@
         {
           "name": "body",
           "in": "body",
+          "description": "kakao or facebook",
           "required": true,
           "schema": {
             "type": "object",
