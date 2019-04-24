@@ -202,32 +202,68 @@
               },
               "result": {
                 "type": "array",
-                "items": {
-                  "type": "object",
-                  "description": "책 정보",
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "example": 28
-                    },
-                    "createdAt": {
-                      "type": "string",
-                      "example": "2018-11-24T15:16:33.000Z"
-                    },
-                    "updatedAt": {
-                      "type": "string",
-                      "example": "2018-11-24T15:34:34.000Z"
-                    },
-                    "title": {
-                      "type": "string",
-                      "example": "aa"
-                    },
-                    "content": {
-                      "type": "string",
-                      "example": "aaa"
-                    }
+                "example": [
+                  {
+                    "bookTitle": "2주 만에 끝나는 해커스 토익스피킹 Start",
+                    "partTitle": "Part1",
+                    "partId": 1,
+                    "questionTitle": "Hackers Test(p70)1 Q1",
+                    "questionId": 1,
+                    "time": "45",
+                    "title": "11",
+                    "content": "11",
+                    "share": 1,
+                    "userId": 3,
+                    "imgUrl": "https://yunhee.s3.amazonaws.com/jxKdsDdw.png",
+                    "fileUrl": null,
+                    "updatedAt": "2019-04-15T13:19:39.000Z"
+                  },
+                  {
+                    "bookTitle": "2주 만에 끝나는 해커스 토익스피킹 Start",
+                    "partTitle": "Part1",
+                    "partId": 1,
+                    "questionTitle": "Hackers Test(p70)2 Q1",
+                    "questionId": 2,
+                    "time": "45",
+                    "title": "11",
+                    "content": "11",
+                    "share": 1,
+                    "userId": 3,
+                    "imgUrl": "https://yunhee.s3.amazonaws.com/jxKdsDdw.png",
+                    "fileUrl": null,
+                    "updatedAt": "2019-04-15T13:20:15.000Z"
+                  },
+                  {
+                    "bookTitle": "2주 만에 끝나는 해커스 토익스피킹 Start",
+                    "partTitle": "Part1",
+                    "partId": 1,
+                    "questionTitle": "Hackers Test(p70)3 Q1",
+                    "questionId": 3,
+                    "time": "45",
+                    "title": "11",
+                    "content": "11222",
+                    "share": 0,
+                    "userId": 3,
+                    "imgUrl": "https://yunhee.s3.amazonaws.com/jxKdsDdw.png",
+                    "fileUrl": null,
+                    "updatedAt": "2019-04-15T16:08:43.000Z"
+                  },
+                  {
+                    "bookTitle": "2주 만에 끝나는 해커스 토익스피킹 Start",
+                    "partTitle": "Part1",
+                    "partId": 1,
+                    "questionTitle": "Hackers Test(p70)4 Q1",
+                    "questionId": 4,
+                    "time": "45",
+                    "title": null,
+                    "content": null,
+                    "share": null,
+                    "userId": null,
+                    "imgUrl": "https://yunhee.s3.amazonaws.com/jxKdsDdw.png",
+                    "fileUrl": null,
+                    "updatedAt": null
                   }
-                }
+                ]
               }
             }
           }

@@ -166,15 +166,30 @@ router.delete('/:id', isLoggedIn, async (req, res) => {
 
 router.get('/:id', isLoggedIn, async (req, res) => {
   const query = `
-    select
-      parts.id as id,
-      parts.createdAt as createdAt,
-      parts.updatedAt as updatedAt,
-      parts.title as title,
-      parts.content as content
-    from books 
-      join parts on books.id = parts.bookId
-      where books.id = ${req.params.id};
+  SELECT 
+    B.title as bookTitle,
+    P.title as partTitle,
+    P.id as partId,
+    Q.title as questionTitle,
+    Q.id as questionId,
+    Q.content as time,
+    T.title as title,
+    T.content as content,
+    T.share as share,
+    T.userId as userId,
+    B.imgUrl as imgUrl,
+    T.fileUrl as fileUrl,
+    T.updatedAt as updatedAt
+  FROM books AS B
+  INNER JOIN parts AS P
+    ON B.id = P.bookId
+  INNER JOIN questions AS Q
+    ON P.id = Q.partId
+  left outer JOIN toasts AS T
+    ON Q.id = T.questionId
+      AND T.userId = ${req.user.id}
+  WHERE B.id = ${req.params.id}
+  GROUP BY Q.id;
     `;
   const result = await db.sequelize.query(query, {
     type: sequelize.QueryTypes.SELECT,

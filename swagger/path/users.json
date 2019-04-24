@@ -469,25 +469,73 @@
                 "type": "object",
                 "description": "유저 리스트",
                 "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": 12
+                  },
                   "nickName": {
                     "type": "string",
                     "example": "aa"
                   },
-                  "email": {
+                  "token": {
                     "type": "string",
                     "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsIm5pY2tOYW1lIjpudWxsLCJlbWFpbCI6ImFhQGFhLmNvbSIsImlhdCI6MTU0MzA3MzU4NCwiZXhwIjoxNTQzNjc4Mzg0LCJpc3MiOiJPTkVQSUMiLCJzdWIiOiJ1c2VySW5mbyJ9.8lKBePdYO7Wv3bkAyAUUGfxbZwzZk7JNvuMx351Kfpg"
                   },
-                  "gender": {
+                  "password": {
                     "type": "string",
                     "example": "aa"
                   },
-                  "year": {
+                  "createdAt": {
                     "type": "string",
                     "example": "2018-11-24T15:16:33.000Z"
                   },
-                  "token": {
+                  "updatedAt": {
                     "type": "string",
-                    "example": "aa"
+                    "example": "2018-11-24T15:34:34.000Z"
+                  },
+                  "profileImg": {
+                    "type": "string",
+                    "example": null
+                  },
+                  "deviceToken": {
+                    "type": "string",
+                    "example": null
+                  },
+                  "age": {
+                    "type": "string",
+                    "example": null
+                  },
+                  "gender": {
+                    "type": "string",
+                    "example": null
+                  },
+                  "authToken": {
+                    "type": "string",
+                    "example": null
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": null
+                  },
+                  "admin": {
+                    "type": "string",
+                    "example": null
+                  },
+                  "leave": {
+                    "type": "string",
+                    "example": false
+                  },
+                  "auth": {
+                    "type": "string",
+                    "example": null
+                  },
+                  "noti": {
+                    "type": "string",
+                    "example": false
+                  },
+                  "subNoti": {
+                    "type": "string",
+                    "example": false
                   }
                 }
               }
