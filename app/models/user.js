@@ -27,6 +27,7 @@ module.exports = (Sequelize, DataTypes) => {
       auth: DataTypes.BOOLEAN,
       noti: DataTypes.BOOLEAN,
       subNoti: DataTypes.BOOLEAN,
+      snsId: DataTypes.STRING,
     },
     {},
   );
