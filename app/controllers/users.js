@@ -40,7 +40,7 @@ router.put('/sns', isNotLoggedIn, async (req, res) => {
       response.email = json.kakao_account && json.kakao_account.email;
       response.gender = json.kakao_account && json.kakao_account.gender;
       response.token = req.body.accessToken;
-      const user = await users.findOne({
+      const user = response.snsId && await users.findOne({
         where: {
           snsId: response.snsId,
           type: req.body.sns,
@@ -90,7 +90,7 @@ router.put('/sns', isNotLoggedIn, async (req, res) => {
       response.year = (json.birthday).split('/')[2];
       response.gender = json.gender;
       response.token = req.body.accessToken;
-      const user = await users.findOne({
+      const user = response.snsId && await users.findOne({
         where: {
           snsId: response.snsId,
           type: req.body.sns,
