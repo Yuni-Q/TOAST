@@ -241,6 +241,10 @@
                     "subNoti": {
                       "type": "string",
                       "example": false
+                    },
+                    "snsId": {
+                      "type": "string",
+                      "example": false
                     }
                   }
                 }
@@ -362,6 +366,10 @@
                       "example": false
                     },
                     "subNoti": {
+                      "type": "string",
+                      "example": false
+                    },
+                    "snsId": {
                       "type": "string",
                       "example": false
                     }
@@ -534,6 +542,10 @@
                     "example": false
                   },
                   "subNoti": {
+                    "type": "string",
+                    "example": false
+                  },
+                  "snsId": {
                     "type": "string",
                     "example": false
                   }
