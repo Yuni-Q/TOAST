@@ -1,6 +1,11 @@
 const express = require('express');
 const sequelize = require('sequelize');
 
+const dayjs = require('dayjs');
+const _ = require('lodash');
+const Aigle = require('aigle');
+Aigle.mixin(_);
+
 const router = express.Router();
 const AWS = require('aws-sdk');
 const formidable = require('formidable');
@@ -15,12 +20,10 @@ const {
   resultFormat,
 } = require('../helpers/formHelper');
 
-
 router.get('/', isLoggedIn, async (req, res) => {
   const read = await db.questions.findAll({});
   res.json(resultFormat(true, null, read));
 });
-
 
 router.post('/', async (req, res) => {
   AWS.config.update({
@@ -194,7 +197,7 @@ router.get('/:id', isLoggedIn, async (req, res) => {
   if (share) {
     const query = `
       select
-        * 
+        *
       from questions 
         join toasts on questions.id = toasts.questionId
         left join (select count(*) as keepsCount, toastId from keeps JOIN toasts on toasts.id = keeps.toastId ) as keeps on keeps.toastId = toasts.id
@@ -205,6 +208,8 @@ router.get('/:id', isLoggedIn, async (req, res) => {
     const result = await db.sequelize.query(query, {
       type: sequelize.QueryTypes.SELECT,
     });
+
+
     res.json(resultFormat(true, null, result));
     return;
   } else {
@@ -221,6 +226,7 @@ router.get('/:id', isLoggedIn, async (req, res) => {
     const result = await db.sequelize.query(query, {
       type: sequelize.QueryTypes.SELECT,
     });
+    
     res.json(resultFormat(true, null, result));
     return;
   }

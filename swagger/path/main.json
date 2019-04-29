@@ -257,5 +257,192 @@
         }
       }
     }
+  },
+  "/main/parts/{id}": {
+    "get": {
+      "tags": [
+        "main"
+      ],
+      "summary": "보관함",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "type": "string",
+          "description": "API 인증 키",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywibmlja05hbWUiOiJ5dW5pIiwiZW1haWwiOiJ5dW5pLmxlZUBtZW1lYm94LmNvbSIsImlhdCI6MTU1NDAxNjcyNCwiZXhwIjoxNTU0NjIxNTI0LCJpc3MiOiJUT0FTVCIsInN1YiI6InVzZXJJbmZvIn0.uCzt_eqGfX8F9fsB6cqloRlbVEqRqrC45FLECZQnDDo",
+          "required": true
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "type": "integer",
+          "default": 1,
+          "description": "책 번호",
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              },
+              "result": {
+                "type": "object",
+                "example": {
+                  "Hackers Test(p70)1 Q1": {
+                    "other": [
+                      {
+                        "partTitle": "Part1",
+                        "partId": 1,
+                        "questionTitle": "Hackers Test(p70)1 Q1",
+                        "questionId": 1,
+                        "time": "45",
+                        "title": "11",
+                        "content": "11",
+                        "share": 1,
+                        "userId": 1,
+                        "fileUrl": null,
+                        "updatedAt": "2019-04-21T18:08:53.000Z",
+                        "keepsCount": null,
+                        "alertCount": 1
+                      }
+                    ],
+                    "me": [
+                      {
+                        "partTitle": "Part1",
+                        "partId": 1,
+                        "questionTitle": "Hackers Test(p70)1 Q1",
+                        "questionId": 1,
+                        "time": "45",
+                        "title": "11",
+                        "content": "11",
+                        "share": 1,
+                        "userId": 3,
+                        "fileUrl": null,
+                        "updatedAt": "2019-04-21T18:00:56.000Z",
+                        "keepsCount": null,
+                        "alertCount": null
+                      },
+                      {
+                        "partTitle": "Part1",
+                        "partId": 1,
+                        "questionTitle": "Hackers Test(p70)1 Q1",
+                        "questionId": 1,
+                        "time": "45",
+                        "title": "22",
+                        "content": "22",
+                        "share": 1,
+                        "userId": 3,
+                        "fileUrl": null,
+                        "updatedAt": "2019-04-15T13:20:03.000Z",
+                        "keepsCount": null,
+                        "alertCount": null
+                      },
+                      {
+                        "partTitle": "Part1",
+                        "partId": 1,
+                        "questionTitle": "Hackers Test(p70)1 Q1",
+                        "questionId": 1,
+                        "time": "45",
+                        "title": "11",
+                        "content": "11",
+                        "share": 1,
+                        "userId": 3,
+                        "fileUrl": null,
+                        "updatedAt": "2019-04-15T13:19:39.000Z",
+                        "keepsCount": null,
+                        "alertCount": null
+                      }
+                    ]
+                  },
+                  "Hackers Test(p70)3 Q1": {
+                    "me": [
+                      {
+                        "partTitle": "Part1",
+                        "partId": 1,
+                        "questionTitle": "Hackers Test(p70)3 Q1",
+                        "questionId": 3,
+                        "time": "45",
+                        "title": "11",
+                        "content": "11222",
+                        "share": 0,
+                        "userId": 3,
+                        "fileUrl": null,
+                        "updatedAt": "2019-04-15T16:08:43.000Z",
+                        "keepsCount": null,
+                        "alertCount": null
+                      }
+                    ]
+                  },
+                  "Hackers Test(p70)2 Q1": {
+                    "me": [
+                      {
+                        "partTitle": "Part1",
+                        "partId": 1,
+                        "questionTitle": "Hackers Test(p70)2 Q1",
+                        "questionId": 2,
+                        "time": "45",
+                        "title": "11",
+                        "content": "11222",
+                        "share": 0,
+                        "userId": 3,
+                        "fileUrl": null,
+                        "updatedAt": "2019-04-15T16:08:22.000Z",
+                        "keepsCount": null,
+                        "alertCount": null
+                      },
+                      {
+                        "partTitle": "Part1",
+                        "partId": 1,
+                        "questionTitle": "Hackers Test(p70)2 Q1",
+                        "questionId": 2,
+                        "time": "45",
+                        "title": "11",
+                        "content": "11",
+                        "share": 1,
+                        "userId": 3,
+                        "fileUrl": null,
+                        "updatedAt": "2019-04-15T13:20:15.000Z",
+                        "keepsCount": null,
+                        "alertCount": null
+                      }
+                    ],
+                    "other": [
+                      {
+                        "partTitle": "Part1",
+                        "partId": 1,
+                        "questionTitle": "Hackers Test(p70)2 Q1",
+                        "questionId": 2,
+                        "time": "45",
+                        "title": null,
+                        "content": null,
+                        "share": 1,
+                        "userId": 1,
+                        "fileUrl": null,
+                        "updatedAt": "2019-01-23T13:28:29.000Z",
+                        "keepsCount": null,
+                        "alertCount": null
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
