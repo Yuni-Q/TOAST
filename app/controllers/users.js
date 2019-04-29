@@ -20,6 +20,7 @@ const router = express.Router();
 
 router.put('/sns', isNotLoggedIn, async (req, res) => {
   let response = {
+    snsId: null,
     nickName: null,
     email: null,
     gender: null,
@@ -34,13 +35,14 @@ router.put('/sns', isNotLoggedIn, async (req, res) => {
       });
       const bufferOriginal = kakaoResponse.body.toString('utf8')
       const json = JSON.parse(bufferOriginal);
-      response.nickName = json.properties.nickname;
-      response.email = json.kakao_account.email;
-      response.gender = json.kakao_account.gender;
+      response.snsId = json.id;
+      response.nickName = json.properties && json.properties.nickname;
+      response.email = json.kakao_account && json.kakao_account.email;
+      response.gender = json.kakao_account && json.kakao_account.gender;
       response.token = req.body.accessToken;
       const user = await users.findOne({
         where: {
-          email: response.email,
+          snsId: response.snsId,
           type: req.body.sns,
         },
       });
@@ -60,6 +62,7 @@ router.put('/sns', isNotLoggedIn, async (req, res) => {
         });
       } else {
         await users.create({
+          snsId: response.snsId,
           email: response.email,
           nickName: response.nickName,
           gender: response.gender,
@@ -71,7 +74,7 @@ router.put('/sns', isNotLoggedIn, async (req, res) => {
       }
       const result = await users.findOne({
         where: {
-          email: response.email,
+          snsId: response.snsId,
           type: req.body.sns,
         },
       });
@@ -81,6 +84,7 @@ router.put('/sns', isNotLoggedIn, async (req, res) => {
       const facebookResponse = await request('GET', `https://graph.facebook.com/me?access_token=${req.body.accessToken}&fields=id,name,gender,birthday,email`);
       const bufferOriginal = facebookResponse.body.toString('utf8')
       const json = JSON.parse(bufferOriginal);
+      response.snsId = json.id;
       response.nickName = json.name;
       response.email = json.email;
       response.year = (json.birthday).split('/')[2];
@@ -88,7 +92,7 @@ router.put('/sns', isNotLoggedIn, async (req, res) => {
       response.token = req.body.accessToken;
       const user = await users.findOne({
         where: {
-          email: response.email,
+          snsId: response.snsId,
           type: req.body.sns,
         },
       });
@@ -109,6 +113,7 @@ router.put('/sns', isNotLoggedIn, async (req, res) => {
         });
       } else {
         await users.create({
+          snsId: response.snsId,
           email: response.email,
           nickName: response.nickName,
           age: response.year,
@@ -121,7 +126,7 @@ router.put('/sns', isNotLoggedIn, async (req, res) => {
       }
       const result = await users.findOne({
         where: {
-          email: response.email,
+          snsId: response.snsId,
           type: req.body.sns,
         },
       });
