@@ -1,5 +1,10 @@
 const express = require('express');
 
+const AWS = require('aws-sdk');
+const formidable = require('formidable');
+const fs = require('fs');
+const path = require('path');
+
 const router = express.Router();
 const {
   isLoggedIn,
@@ -18,67 +23,147 @@ router.get('/', isLoggedIn, async (req, res) => {
 
 
 router.post('/', isLoggedIn, async (req, res) => {
-  const {
-    title,
-    content,
-    toastId,
-  } = req.body;
-  const result = await db.notifications.create({
-    title,
-    content,
+  AWS.config.update({
+    accessKeyId: global.config.AWSAccessKeyId,
+    secretAccessKey: global.config.AWSSecretKey,
   });
-  // const user = await db.users.findOne({
-  //   where: {
-  //     id: userId,
-  //   },
-  // });
-  // if(user.subNoti) {
-  //   // This registration token comes from the client FCM SDKs.
-  //   var message = {
-  //     notification: {
-  //       title: '$GOOG up 1.43% on the day',
-  //       body: '$GOOG gained 11.80 points to close at 835.67, up 1.43% on the day.'
-  //     },
-  //     token: toast.deviceToken,
-  //   };
+  const s3 = new AWS.S3();
+  const form = new formidable.IncomingForm();
 
-  //   // Send a message to the device corresponding to the provided
-  //   // registration token.
-  //   admin.messaging().send(message)
-  //     .then((response) => {
-  //       // Response is a message ID string.
-  //       console.log('Successfully sent message:', response);
-  //     })
-  //     .catch((error) => {
-  //       console.log('Error sending message:', error);
-  //       res.json(resultFormat(false, '메세지가 올바로 전송 되지 않았습니다', {
-  //         token: toast.deviceToken,
-  //         toastId,
-  //         userId,
-  //       }));
-  //       return;
-  //     });
-  // };
-  res.json(resultFormat(true, null, result));
+  // make upload dirName
+  // const dirName = '';
+  let possible = '0123456789abcdef';
+  // for (var i = 0; i < 4; i++) dirName += possible.charAt(Math.floor(Math.random() * possible.length));
+  // dirName = dirName + '-' + new Date().toISOString().substr(0, 10);
+
+  // make upload fileName
+  let fileName = '';
+  possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  for (let i = 0; i < 8; i += 1) fileName += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  // 서버에 업로드 완료 후
+  form.parse(req, async (err, fields, files) => {
+    if (!files.image) {
+      const read = await db.notifications.create({
+        title: fields.title,
+        content: fields.content,
+        subTitle: fields.subTitle,
+        to: fields.to,
+        from: fields.from,
+        type: fields.type,
+      });
+      res.json(resultFormat(true, null, read));
+      return;
+    }
+
+    const {
+      image,
+    } = files;
+    const defaultPath = fileName;
+    const imageUrl = defaultPath + path.parse(image.name).ext;
+
+    // image upload
+    // console.log('image path : ' + defaultPath + path.parse(image.name).ext);
+    s3.upload({
+      Bucket: 'yunhee',
+      Key: imageUrl,
+      ACL: 'public-read',
+      Body: fs.createReadStream(image.path),
+    }, (error, result) => {
+      if (error) console.log(error);
+      else console.log(result);
+    });
+    const baseUrl = 'https://yunhee.s3.amazonaws.com/';
+    const imgUrl = baseUrl + imageUrl;
+    const read = await db.notifications.create({
+      title: fields.title,
+      content: fields.content,
+      imgUrl,
+      subTitle: fields.subTitle,
+      to: fields.to,
+      from: fields.from,
+      type: fields.type,
+    });
+    res.json(resultFormat(true, null, read));
+    // unlink tmp files
+    fs.unlinkSync(image.path);
+  });
 });
 
 router.put('/:id', isLoggedIn, async (req, res) => {
-  const {
-    title,
-    content,
-  } = req.body;
-  const result = await db.notifications.update(
-    {
-      title,
-      content,
-    },
-    {
+  AWS.config.update({
+    accessKeyId: global.config.AWSAccessKeyId,
+    secretAccessKey: global.config.AWSSecretKey,
+  });
+  const s3 = new AWS.S3();
+  const form = new formidable.IncomingForm();
+
+  // make upload dirName
+  // const dirName = '';
+  let possible = '0123456789abcdef';
+  // for (var i = 0; i < 4; i++) dirName += possible.charAt(Math.floor(Math.random() * possible.length));
+  // dirName = dirName + '-' + new Date().toISOString().substr(0, 10);
+
+  // make upload fileName
+  let fileName = '';
+  possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  for (let i = 0; i < 8; i += 1) fileName += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  // 서버에 업로드 완료 후
+  form.parse(req, async (err, fields, files) => {
+    if (!files.image) {
+      await db.notifications.update({
+        title: fields.title,
+        content: fields.content,
+        subTitle: fields.subTitle,
+        to: fields.to,
+        from: fields.from,
+        type: fields.type,
+      }, {
+        where: {
+          id: req.params.id,
+        },
+      });
+      res.json(resultFormat(true, null));
+      return;
+    }
+
+    const {
+      image,
+    } = files;
+    const defaultPath = fileName;
+    const imageUrl = defaultPath + path.parse(image.name).ext;
+
+    // image upload
+    // console.log('image path : ' + defaultPath + path.parse(image.name).ext);
+    s3.upload({
+      Bucket: 'yunhee',
+      Key: imageUrl,
+      ACL: 'public-read',
+      Body: fs.createReadStream(image.path),
+    }, (error, result) => {
+      if (error) console.log(error);
+      else console.log(result);
+    });
+    const baseUrl = 'https://yunhee.s3.amazonaws.com/';
+    const imgUrl = baseUrl + imageUrl;
+    const read = await db.notifications.update({
+      title: fields.title,
+      content: fields.content,
+      imgUrl,
+      subTitle: fields.subTitle,
+      to: fields.to,
+      from: fields.from,
+      type: fields.type,
+    }, {
       where: {
         id: req.params.id,
       },
-    },
-  );
-  res.json(resultFormat(true, null, result));
+    });
+    res.json(resultFormat(true, null));
+    // unlink tmp files
+    fs.unlinkSync(image.path);
+  });
 });
 
 // 게시글 id에 해당하는 글 지우기 -> deletealerts에 넣기
