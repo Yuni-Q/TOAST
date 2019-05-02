@@ -204,64 +204,824 @@
                 "type": "array",
                 "example": [
                   {
-                    "bookTitle": "2주 만에 끝나는 해커스 토익스피킹 Start",
                     "partTitle": "Part1",
                     "partId": 1,
-                    "questionTitle": "Hackers Test(p70)1 Q1",
-                    "questionId": 1,
-                    "time": "45",
-                    "title": "11",
-                    "content": "11",
-                    "share": 1,
-                    "userId": 3,
-                    "imgUrl": "https://yunhee.s3.amazonaws.com/jxKdsDdw.png",
-                    "fileUrl": null,
-                    "updatedAt": "2019-04-15T13:19:39.000Z"
+                    "time": "45"
                   },
                   {
-                    "bookTitle": "2주 만에 끝나는 해커스 토익스피킹 Start",
                     "partTitle": "Part1",
                     "partId": 1,
-                    "questionTitle": "Hackers Test(p70)2 Q1",
-                    "questionId": 2,
-                    "time": "45",
-                    "title": "11",
-                    "content": "11",
-                    "share": 1,
-                    "userId": 3,
-                    "imgUrl": "https://yunhee.s3.amazonaws.com/jxKdsDdw.png",
-                    "fileUrl": null,
-                    "updatedAt": "2019-04-15T13:20:15.000Z"
+                    "time": "45"
                   },
                   {
-                    "bookTitle": "2주 만에 끝나는 해커스 토익스피킹 Start",
                     "partTitle": "Part1",
                     "partId": 1,
-                    "questionTitle": "Hackers Test(p70)3 Q1",
-                    "questionId": 3,
-                    "time": "45",
-                    "title": "11",
-                    "content": "11222",
-                    "share": 0,
-                    "userId": 3,
-                    "imgUrl": "https://yunhee.s3.amazonaws.com/jxKdsDdw.png",
-                    "fileUrl": null,
-                    "updatedAt": "2019-04-15T16:08:43.000Z"
+                    "time": "45"
                   },
                   {
-                    "bookTitle": "2주 만에 끝나는 해커스 토익스피킹 Start",
                     "partTitle": "Part1",
                     "partId": 1,
-                    "questionTitle": "Hackers Test(p70)4 Q1",
-                    "questionId": 4,
-                    "time": "45",
-                    "title": null,
-                    "content": null,
-                    "share": null,
-                    "userId": null,
-                    "imgUrl": "https://yunhee.s3.amazonaws.com/jxKdsDdw.png",
-                    "fileUrl": null,
-                    "updatedAt": null
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Part1",
+                    "partId": 1,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Part1",
+                    "partId": 1,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Part1",
+                    "partId": 1,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Part1",
+                    "partId": 1,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Part1",
+                    "partId": 1,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Part1",
+                    "partId": 1,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Part1",
+                    "partId": 1,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Part1",
+                    "partId": 1,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Part1",
+                    "partId": 1,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Part2",
+                    "partId": 2,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Part2",
+                    "partId": 2,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Part2",
+                    "partId": 2,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Part2",
+                    "partId": 2,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Part2",
+                    "partId": 2,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Part2",
+                    "partId": 2,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Part2",
+                    "partId": 2,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Part2",
+                    "partId": 2,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Part2",
+                    "partId": 2,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Part2",
+                    "partId": 2,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Part2",
+                    "partId": 2,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Part2",
+                    "partId": 2,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Part2",
+                    "partId": 2,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part3",
+                    "partId": 3,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Part4",
+                    "partId": 4,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Part5",
+                    "partId": 5,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part5",
+                    "partId": 5,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part5",
+                    "partId": 5,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part5",
+                    "partId": 5,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part5",
+                    "partId": 5,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part5",
+                    "partId": 5,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part5",
+                    "partId": 5,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part5",
+                    "partId": 5,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part5",
+                    "partId": 5,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part5",
+                    "partId": 5,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part5",
+                    "partId": 5,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part5",
+                    "partId": 5,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part5",
+                    "partId": 5,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part6",
+                    "partId": 6,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part6",
+                    "partId": 6,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part6",
+                    "partId": 6,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part6",
+                    "partId": 6,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part6",
+                    "partId": 6,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part6",
+                    "partId": 6,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part6",
+                    "partId": 6,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part6",
+                    "partId": 6,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part6",
+                    "partId": 6,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part6",
+                    "partId": 6,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part6",
+                    "partId": 6,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part6",
+                    "partId": 6,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Part6",
+                    "partId": 6,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "45"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "15"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "30"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "60"
+                  },
+                  {
+                    "partTitle": "Autual Test",
+                    "partId": 7,
+                    "time": "60"
                   }
                 ]
               }
