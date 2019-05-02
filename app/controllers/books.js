@@ -192,21 +192,14 @@ router.get('/:id', isLoggedIn, async (req, res) => {
   // GROUP BY Q.id;
   //   `;
   const query = `
-  SELECT 
-    P.title as partTitle,
-    P.id as partId,
-    Q.content as time
-  FROM books AS B
-  INNER JOIN parts AS P
-    ON B.id = P.bookId
-  INNER JOIN questions AS Q
-    ON P.id = Q.partId
-  left outer JOIN toasts AS T
-    ON Q.id = T.questionId
-      AND T.userId = ${req.user.id}
-  WHERE B.id = ${req.params.id}
-  GROUP BY Q.id;
-    `;
+    SELECT 
+      P.title as partTitle,
+      P.id as partId
+    FROM books AS B
+    INNER JOIN parts AS P
+      ON B.id = P.bookId
+    WHERE B.id = ${req.params.id}    
+  `;
   const result = await db.sequelize.query(query, {
     type: sequelize.QueryTypes.SELECT,
   });
