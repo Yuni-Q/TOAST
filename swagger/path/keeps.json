@@ -85,7 +85,7 @@
         }
       }
     },
-    "post": {
+    "put": {
       "tags": [
         "keeps"
       ],

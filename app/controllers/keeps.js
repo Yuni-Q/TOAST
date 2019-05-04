@@ -115,7 +115,7 @@ router.get('/', isLoggedIn, async (req, res) => {
   res.json(resultFormat(true, null, result));
 });
 
-router.post('/', isLoggedIn, async (req, res) => {
+router.put('/', isLoggedIn, async (req, res) => {
   const {
     id: userId,
   } = req.user;
