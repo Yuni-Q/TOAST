@@ -4,7 +4,7 @@
       "tags": [
         "likes"
       ],
-      "summary": "좋아요",
+      "summary": "좋아요가 없을 경우 생성 / 있을 경우 삭제",
       "produces": [
         "application/json"
       ],
