@@ -89,7 +89,7 @@
       "tags": [
         "keeps"
       ],
-      "summary": "toast keep",
+      "summary": "toast keep이 없을 경우 생성 / 있을 경우 삭제",
       "produces": [
         "application/json"
       ],
