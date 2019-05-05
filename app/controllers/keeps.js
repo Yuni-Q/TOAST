@@ -47,14 +47,48 @@ router.get('/me', isLoggedIn, async (req, res) => {
   const toasts = await db.sequelize.query(query1, {
     type: sequelize.QueryTypes.SELECT,
   });
-  let list = _.groupBy(toasts, function (item) {
-    return item.partTitle;
-  });
-  _.forEach(list, function (value, key) {
-    list[key] = _.groupBy(list[key], function (item) {
-      return item.questionTitle;
-    });
-  });
+  const sortToasts = toasts.sort(function (a, b) { return b.updatedAt - a.updatedAt });
+  const list = {
+    parts: [],
+  }
+  _.forEach(sortToasts, async (toast) => {
+    toast.updatedAt = Date.parse(toast.updatedAt);
+    _.forEach(list.parts, (dataP, index) => {
+      if (dataP.partTitle === toast.partTitle) {
+        _.forEach(dataP.questions, (dataQ, index2) => {
+          if (dataQ.questionTitle === toast.questionTitle) {
+            dataQ.toasts.push(toast)
+          } else if (dataP.questions.length - 1 === index2) {
+            dataP.questions.push({
+              questionTitle: toast.questionTitle,
+              toasts: [toast],
+            });
+          }
+        })
+      } else if (list.parts - 1 === index) {
+        list.parts.push({
+          partTitle: toast.partTitle,
+          questions: [
+            {
+              questionTitle: toast.questionTitle,
+              toasts: [toast],
+            }
+          ]
+        })
+      }
+    })
+    if (list.parts.length === 0) {
+      list.parts.push({
+        partTitle: toast.partTitle,
+        questions: [
+          {
+            questionTitle: toast.questionTitle,
+            toasts: [toast],
+          }
+        ]
+      })
+    }
+  })
   result.me = list;
 
   const query2 = `
@@ -87,14 +121,48 @@ router.get('/me', isLoggedIn, async (req, res) => {
   const toasts2 = await db.sequelize.query(query2, {
     type: sequelize.QueryTypes.SELECT,
   });
-  let list2 = _.groupBy(toasts2, function (item) {
-    return item.partTitle;
-  });
-  _.forEach(list2, function (value, key) {
-    list2[key] = _.groupBy(list2[key], function (item) {
-      return item.questionTitle;
-    });
-  });
+  const sortToasts2 = toasts2.sort(function (a, b) { return b.updatedAt - a.updatedAt });
+  const list2 = {
+    parts: [],
+  }
+  _.forEach(sortToasts2, async (toast) => {
+    toast.updatedAt = Date.parse(toast.updatedAt);
+    _.forEach(list2.parts, (dataP, index) => {
+      if (dataP.partTitle === toast.partTitle) {
+        _.forEach(dataP.questions, (dataQ, index2) => {
+          if (dataQ.questionTitle === toast.questionTitle) {
+            dataQ.toasts.push(toast)
+          } else if (dataP.questions.length - 1 === index2) {
+            dataP.questions.push({
+              questionTitle: toast.questionTitle,
+              toasts: [toast],
+            });
+          }
+        })
+      } else if (list2.parts - 1 === index) {
+        list2.parts.push({
+          partTitle: toast.partTitle,
+          questions: [
+            {
+              questionTitle: toast.questionTitle,
+              toasts: [toast],
+            }
+          ]
+        })
+      }
+    })
+    if (list2.parts.length === 0) {
+      list2.parts.push({
+        partTitle: toast.partTitle,
+        questions: [
+          {
+            questionTitle: toast.questionTitle,
+            toasts: [toast],
+          }
+        ]
+      })
+    }
+  })
   result.other = list2;
 
   res.json(resultFormat(true, null, result));
