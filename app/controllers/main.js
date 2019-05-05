@@ -132,26 +132,104 @@ router.get('/books/:id', isLoggedIn, async (req, res) => {
     type: sequelize.QueryTypes.SELECT,
   });
 
-  const sortToasts = toasts.sort(function(a, b){return b.updatedAt-a.updatedAt})
-  
-  let result = _.groupBy(sortToasts, function (item) {
-    return item.partTitle;
-  });
+  const sortToasts = toasts.sort(function (a, b) { return b.updatedAt - a.updatedAt });
 
-  _.forEach(result, function (value, key) {
-    result[key] = _.groupBy(result[key], function (item) {
-      return item.questionTitle;
-    });
-  });
+  const result = {
+    parts: [],
+  }
 
-  _.forEach(result, function (value, key) {
-    _.forEach(result[key], function (value, k) {
-      result[key][k] = _.groupBy(result[key][k], function (i) {
-      if (i.userId === req.user.id) return "me";
-      else return "other";
+  _.forEach(sortToasts, async (toast) => {
+    toast.updatedAt = Date.parse(toast.updatedAt);
+    _.forEach(result.parts, (dataP, index) => {
+      if (dataP.partTitle === toast.partTitle) {
+        _.forEach(dataP.questions, (dataQ, index2) => {
+          if (dataQ.questionTitle === toast.questionTitle) {
+            if (toast.userId === req.user.id) {
+              dataQ.toasts.me.push(toast)
+            } else {
+              dataQ.toasts.other.push(toast)
+            }
+          } else if (dataP.questions.length - 1 === index2) {
+            if (toast.userId === req.user.id) {
+              dataP.questions.push({
+                questionTitle: toast.questionTitle,
+                toasts: {
+                  me: [toast],
+                  other: []
+                },
+              });
+            } else {
+              dataP.questions.push({
+                questionTitle: toast.questionTitle,
+                toasts: {
+                  me: [],
+                  other: [toast]
+                },
+              });
+            }
+          }
+        })
+      } else if (result.parts - 1 === index) {
+        if (toast.userId === req.user.id) {
+          result.parts.push({
+            partTitle: toast.partTitle,
+            questions: [
+              {
+                questionTitle: toast.questionTitle,
+                toasts: {
+                  me: [toast],
+                  other: [],
+                }
+              }
+            ]
+          })
+        } else {
+          result.parts.push({
+            partTitle: toast.partTitle,
+            questions: [
+              {
+                questionTitle: toast.questionTitle,
+                toasts: {
+                  me: [],
+                  other: [toast],
+                }
+              }
+            ]
+          })
+        }
+      }
     })
+    if (result.parts.length === 0) {
+      if (toast.userId === req.user.id) {
+
+        result.parts.push({
+          partTitle: toast.partTitle,
+          questions: [
+            {
+              questionTitle: toast.questionTitle,
+              toasts: {
+                me: [toast],
+                other: [],
+              }
+            }
+          ]
+        })
+      } else {
+        result.parts.push({
+          partTitle: toast.partTitle,
+          questions: [
+            {
+              questionTitle: toast.questionTitle,
+              toasts: {
+                me: [],
+                other: [toast],
+              }
+            }
+          ]
+        })
+      }
+    }
   })
-})
   res.json(resultFormat(true, null, result));
 });
 
@@ -221,8 +299,8 @@ router.get('/parts/:id', isLoggedIn, async (req, res) => {
     type: sequelize.QueryTypes.SELECT,
   });
 
-  const sortToasts = toasts.sort(function(a, b){return b.updatedAt-a.updatedAt})
-  
+  const sortToasts = toasts.sort(function (a, b) { return b.updatedAt - a.updatedAt })
+
   let result = _.groupBy(sortToasts, function (item) {
     return item.questionTitle;
   });
@@ -236,5 +314,4 @@ router.get('/parts/:id', isLoggedIn, async (req, res) => {
 
   res.json(resultFormat(true, null, result));
 });
-
 module.exports = router;
