@@ -140,6 +140,7 @@ router.get('/books/:id', isLoggedIn, async (req, res) => {
 
   _.forEach(sortToasts, async (toast) => {
     toast.updatedAt = Date.parse(toast.updatedAt);
+    toast.time = parseInt(toast.time, 10);
     _.forEach(result.parts, (dataP, index) => {
       if (dataP.partTitle === toast.partTitle) {
         _.forEach(dataP.questions, (dataQ, index2) => {
