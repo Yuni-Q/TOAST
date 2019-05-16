@@ -1,4 +1,8 @@
 module.exports = {
+  admin_books: require('./admin/books'),
+  admin_parts: require('./admin/parts'),
+  admin_questions: require('./admin/questions'),
+  admin_users: require('./admin/users'),
   alerts: require('./alerts'),
   books: require('./books'),
   customToasts: require('./customToasts'),
