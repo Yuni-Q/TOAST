@@ -192,9 +192,26 @@ router.put("/auth", async (req, res, next) => {
     res.json(resultFormat(true, null));
     return;
   }
-  res.json(resultFormat(false, '인증번호가 올바르지 않습니다 !!'));
-  
+  res.json(resultFormat(false, '인증번호가 올바르지 않습니다 !!'));  
 })
+
+router.get('/me', isLoggedIn, async (req, res) => {
+  try {
+    const user = await users.findOne(
+      {
+        attributes: ['nickName', 'email']
+      },
+      {
+        where: { 
+          id: req.user.id 
+        }
+      });
+    console.log(user);
+    res.json(resultFormat(true, null, user));
+  } catch (error) {
+    res.json(resultFormat(false, error.message));
+  }
+});
 
 router.get('/', isLoggedIn, async (req, res) => {
   try {
