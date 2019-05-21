@@ -194,7 +194,8 @@ router.get('/:id', isLoggedIn, async (req, res) => {
   const query = `
     SELECT 
       P.title as partTitle,
-      P.id as partId
+      P.id as partId,
+      P.content as partContent
     FROM books AS B
     INNER JOIN parts AS P
       ON B.id = P.bookId
