@@ -178,7 +178,8 @@ router.get('/:id', isLoggedIn, async (req, res) => {
       join toasts on questions.id = toasts.questionId
       left join (select count(*) as keepsCount, toastId from keeps JOIN toasts on toasts.id = keeps.toastId ) as keeps on keeps.toastId = toasts.id
       left join (select count(*) as alertCount, toastId from alerts JOIN toasts on toasts.id = alerts.toastId ) as alerts on alerts.toastId = toasts.id
-      where questions.id = ${req.params.id}
+    where questions.id = ${req.params.id}
+    ORDER BY questions.createdAt DESC;
     `;
   const result = await db.sequelize.query(query, {
     type: sequelize.QueryTypes.SELECT,
