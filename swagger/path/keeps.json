@@ -410,5 +410,213 @@
         }
       }
     }
+  },
+  "/keeps/me/books/{id}": {
+    "get": {
+      "tags": [
+        "keeps"
+      ],
+      "summary": "좋아요",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "type": "string",
+          "description": "API 인증 키",
+          "default": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywibmlja05hbWUiOiJ5dW5pIiwiZW1haWwiOiJ5dW5pLmxlZUBtZW1lYm94LmNvbSIsImlhdCI6MTU1NDAxNjcyNCwiZXhwIjoxNTU0NjIxNTI0LCJpc3MiOiJUT0FTVCIsInN1YiI6InVzZXJJbmZvIn0.uCzt_eqGfX8F9fsB6cqloRlbVEqRqrC45FLECZQnDDo",
+          "required": true
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "type": "integer",
+          "default": 1,
+          "description": "book 번호",
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean",
+                "example": true
+              },
+              "error": {
+                "type": "string",
+                "example": null
+              },
+              "result": {
+                "type": "object",
+                "example": {
+                  "me": {
+                    "parts": [
+                      {
+                        "partTitle": "Part1",
+                        "questions": [
+                          {
+                            "questionTitle": "Hackers Test(p70)1 Q1",
+                            "toasts": [
+                              {
+                                "bookTitle": "2주 만에 끝나는 해커스 토익스피킹 Start",
+                                "partTitle": "Part1",
+                                "partId": 1,
+                                "questionTitle": "Hackers Test(p70)1 Q1",
+                                "questionId": 1,
+                                "time": 45,
+                                "title": "11",
+                                "content": "11",
+                                "share": 1,
+                                "userId": 3,
+                                "keepsCount": null,
+                                "alertCount": null,
+                                "imgUrl": "https://yunhee.s3.amazonaws.com/jxKdsDdw.png",
+                                "fileUrl": null,
+                                "updatedAt": 1555869656000
+                              },
+                              {
+                                "bookTitle": "2주 만에 끝나는 해커스 토익스피킹 Start",
+                                "partTitle": "Part1",
+                                "partId": 1,
+                                "questionTitle": "Hackers Test(p70)1 Q1",
+                                "questionId": 1,
+                                "time": 45,
+                                "title": "22",
+                                "content": "22",
+                                "share": 1,
+                                "userId": 3,
+                                "keepsCount": null,
+                                "alertCount": null,
+                                "imgUrl": "https://yunhee.s3.amazonaws.com/jxKdsDdw.png",
+                                "fileUrl": null,
+                                "updatedAt": 1555334403000
+                              },
+                              {
+                                "bookTitle": "2주 만에 끝나는 해커스 토익스피킹 Start",
+                                "partTitle": "Part1",
+                                "partId": 1,
+                                "questionTitle": "Hackers Test(p70)1 Q1",
+                                "questionId": 1,
+                                "time": 45,
+                                "title": "11",
+                                "content": "11",
+                                "share": 1,
+                                "userId": 3,
+                                "keepsCount": null,
+                                "alertCount": null,
+                                "imgUrl": "https://yunhee.s3.amazonaws.com/jxKdsDdw.png",
+                                "fileUrl": null,
+                                "updatedAt": 1555334379000
+                              }
+                            ]
+                          },
+                          {
+                            "questionTitle": "Hackers Test(p70)2 Q1",
+                            "toasts": [
+                              {
+                                "bookTitle": "2주 만에 끝나는 해커스 토익스피킹 Start",
+                                "partTitle": "Part1",
+                                "partId": 1,
+                                "questionTitle": "Hackers Test(p70)2 Q1",
+                                "questionId": 2,
+                                "time": 45,
+                                "title": "11",
+                                "content": "11",
+                                "share": 1,
+                                "userId": 3,
+                                "keepsCount": null,
+                                "alertCount": null,
+                                "imgUrl": "https://yunhee.s3.amazonaws.com/jxKdsDdw.png",
+                                "fileUrl": null,
+                                "updatedAt": 1555334415000
+                              }
+                            ]
+                          },
+                          {
+                            "questionTitle": "Hackers Test(p70)1 Q1",
+                            "toasts": [
+                              {
+                                "bookTitle": "2주 만에 끝나는 해커스 토익스피킹 Start",
+                                "partTitle": "Part1",
+                                "partId": 1,
+                                "questionTitle": "Hackers Test(p70)1 Q1",
+                                "questionId": 1,
+                                "time": 45,
+                                "title": "22",
+                                "content": "22",
+                                "share": 1,
+                                "userId": 3,
+                                "keepsCount": null,
+                                "alertCount": null,
+                                "imgUrl": "https://yunhee.s3.amazonaws.com/jxKdsDdw.png",
+                                "fileUrl": null,
+                                "updatedAt": 1555334403000
+                              },
+                              {
+                                "bookTitle": "2주 만에 끝나는 해커스 토익스피킹 Start",
+                                "partTitle": "Part1",
+                                "partId": 1,
+                                "questionTitle": "Hackers Test(p70)1 Q1",
+                                "questionId": 1,
+                                "time": 45,
+                                "title": "11",
+                                "content": "11",
+                                "share": 1,
+                                "userId": 3,
+                                "keepsCount": null,
+                                "alertCount": null,
+                                "imgUrl": "https://yunhee.s3.amazonaws.com/jxKdsDdw.png",
+                                "fileUrl": null,
+                                "updatedAt": 1555334379000
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "other": {
+                    "parts": [
+                      {
+                        "partTitle": "Part1",
+                        "questions": [
+                          {
+                            "questionTitle": "Hackers Test(p70)3 Q1",
+                            "toasts": [
+                              {
+                                "bookTitle": "2주 만에 끝나는 해커스 토익스피킹 Start",
+                                "partTitle": "Part1",
+                                "partId": 1,
+                                "questionTitle": "Hackers Test(p70)3 Q1",
+                                "questionId": 3,
+                                "time": 45,
+                                "title": null,
+                                "content": null,
+                                "share": 1,
+                                "userId": 1,
+                                "keepsCount": 1,
+                                "alertCount": null,
+                                "imgUrl": "https://yunhee.s3.amazonaws.com/jxKdsDdw.png",
+                                "fileUrl": null,
+                                "updatedAt": 1548250110000
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
