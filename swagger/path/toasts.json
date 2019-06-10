@@ -158,14 +158,14 @@
           "in": "formData",
           "description": "file to upload",
           "required": false,
-          "type": "integer"
+          "type": "text"
         },
         {
           "name": "share",
           "in": "formData",
           "description": "file to upload",
           "required": false,
-          "type": "integer"
+          "type": "text"
         }
       ],
       "responses": {
@@ -313,7 +313,7 @@
           "in": "formData",
           "description": "file to upload",
           "required": false,
-          "type": "integer"
+          "type": "text"
         }
       ],
       "responses": {
